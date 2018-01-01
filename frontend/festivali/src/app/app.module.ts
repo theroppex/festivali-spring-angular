@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,6 +12,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { LoginService } from './services/login.service';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { RegFormComponent } from './components/reg-form/reg-form.component';
 
 
 @NgModule({
@@ -17,12 +22,22 @@ import { LoginService } from './services/login.service';
     AppComponent,
     NavbarComponent,
     LoginComponent,
+    HomePageComponent,
+    RegisterPageComponent,
+    RegFormComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule.forRoot(),
     HttpModule,
+    RouterModule.forRoot(
+      [
+        {path: '', component: HomePageComponent},
+        {path: 'register', component: RegisterPageComponent},
+      ]
+    ),
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]
