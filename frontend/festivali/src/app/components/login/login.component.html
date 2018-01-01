@@ -1,5 +1,5 @@
 <div class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Username" aria-label="Password">
-    <input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password">
-    <button class="btn btn-outline-success my-2 my-sm-0">Login</button>
+    <input class="form-control mr-sm-2" [ngClass]="{'is-valid':validUsername}" type="search" placeholder="Username" aria-label="Password" (keyup)="validateUsername()" [(ngModel)]="loginForm.username">
+    <input class="form-control mr-sm-2" [ngClass]="{'is-valid':validPassword}" type="password" placeholder="Password" aria-label="Password" (keyup)="validatePassword()" [(ngModel)]="loginForm.password">
+    <button class="btn btn-outline-success my-2 my-sm-0" [disabled]="!validInput">Login</button>
 </div>

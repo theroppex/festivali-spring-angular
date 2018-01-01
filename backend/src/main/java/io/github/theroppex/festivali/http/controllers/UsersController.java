@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
+import java.util.Map;
+
 
 
 @RestController
@@ -26,8 +29,7 @@ public class UsersController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "exists")
-    public boolean isUserByUsername(@RequestParam("username") String username) {
-        System.out.println(username);
-        return usersService.isUserByUsername(username);
+    public Map<String, Boolean> isUserByUsername(@RequestParam("username") String username) {
+        return Collections.singletonMap("result", usersService.isUserByUsername(username));
     }
 }
