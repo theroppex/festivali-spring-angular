@@ -8,7 +8,7 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent implements OnInit {
   private loginForm = {'username':'', 'password':''};
-
+  
   private validInput: boolean = false;
   private validUsername: boolean = false;
   private validPassword: boolean = false;
@@ -16,6 +16,21 @@ export class LoginComponent implements OnInit {
   constructor(private loginService:LoginService) { }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    this.loginService.loginUser(this.loginForm.username, this.loginForm.password)
+      .subscribe(
+        res => {
+          let data = res.json();
+          let token = data['token'];
+          localStorage.setItem("xAuthToken", token);
+          location.reload();
+        },
+        err => {
+          console.log(err);
+        }
+      )
   }
 
   validateInput() {

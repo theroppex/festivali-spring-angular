@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-register-page',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router, private loginService : LoginService) { }
 
   ngOnInit() {
+    this.loginService.checkSession()
+      .subscribe(
+        res => {
+          this.router.navigateByUrl("");
+        }
+      )
   }
 
 }

@@ -29,8 +29,8 @@
       </ul>
 
       <!-- LOGIN COMPONENT -->
-      <app-login></app-login>
+      <app-login *ngIf="!loggedIn && show"></app-login>
 
-      <a routerLink="/register"><button class="btn btn-danger my-2 my-sm-0 spacer">Register</button></a>
+      <a routerLink="/register" *ngIf="!loggedIn && show"><button class="btn btn-danger my-2 my-sm-0 spacer">Register</button></a>
     </div>
   </nav>

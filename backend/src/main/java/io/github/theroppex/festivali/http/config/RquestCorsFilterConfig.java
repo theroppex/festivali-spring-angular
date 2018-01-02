@@ -28,7 +28,6 @@ public class RquestCorsFilterConfig implements Filter{
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Pre-fight");
             response.setHeader("Access-Control-Allowed-Methods", "POST, GET, DELETE");
             response.setHeader("Access-Control-Max-Age", "3600");
             response.setHeader("Access-Control-Allow-Headers", "authorization, content-type, x-auth-token, " +
