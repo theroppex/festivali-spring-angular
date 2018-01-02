@@ -12,6 +12,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { LoginService } from './services/login.service';
+import { RegistrationService } from './services/registration.service';
+
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { RegFormComponent } from './components/reg-form/reg-form.component';
@@ -39,7 +41,11 @@ import { RegFormComponent } from './components/reg-form/reg-form.component';
       ]
     ),
   ],
-  providers: [LoginService],
+  providers: 
+  [
+    LoginService,
+    RegistrationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

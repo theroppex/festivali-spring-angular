@@ -1,42 +1,121 @@
 <div class="card" style="width: 100%; margin-top: 50px;">
 
   <div class="card-body">
+    <div *ngIf="isSuccess" class="alert alert-success" role="alert">
+      You have registered successfuly.
+    </div>
+    <div *ngIf="isFailure" class="alert alert-danger" role="alert">
+      Something went wrong.
+    </div>
 
     <h5 class="card-title text-center">Registration Form</h5>
 
-    <form>
+    <form [formGroup]="form">
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Name">
+        <input formControlName="name" [ngClass]="{'is-invalid':name.touched && name.invalid}" type="text" class="form-control" id="name" aria-describedby="name" placeholder="Name">
+        <div *ngIf="name.touched && name.invalid">
+            <small
+              *ngIf="name.errors.required" 
+              class="form-text text-danger">
+              Name is required
+            </small>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="lastname">Lastname</label>
-        <input type="text" class="form-control" id="lastname" aria-describedby="lastname" placeholder="Lastname">
+        <input formControlName="lastname" [ngClass]="{'is-invalid':lastname.touched && lastname.invalid}" type="text" class="form-control" id="lastname" aria-describedby="lastname" placeholder="Lastname">
+        <div *ngIf="lastname.touched && lastname.invalid">
+            <small
+              *ngIf="lastname.errors.required" 
+              class="form-text text-danger">
+              Lastname is required
+            </small>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" aria-describedby="username" placeholder="Username">
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password">
-      </div>
-
-      <div class="form-group">
-          <label for="passconfirm">Confirm password</label>
-          <input type="password" class="form-control" id="passconfirm" placeholder="Confirm Password">
+        <input formControlName="username" [ngClass]="{'is-invalid':username.touched && username.invalid}" type="text" class="form-control" id="username" aria-describedby="username" placeholder="Username">
+        <div *ngIf="username.touched && username.invalid">
+            <small
+              *ngIf="username.errors.required" 
+              class="form-text text-danger">
+              Username is required
+            </small>
+            <small
+              *ngIf="username.errors.userExists" 
+              class="form-text text-danger">
+              Username is taken
+            </small>
+            <small
+              *ngIf="username.errors.minlength" 
+              class="form-text text-danger">
+              Username must be at least 3 characters long.
+            </small>
+            <small
+              *ngIf="username.errors.maxlength" 
+              class="form-text text-danger">
+              Username can't be more than 25 characters long.
+            </small>
         </div>
+      </div>
+
+      <div formGroupName="passwords">
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input formControlName="password" [ngClass]="{'is-invalid':password.touched && password.invalid}" type="password" class="form-control" id="password" placeholder="Password">
+          <div *ngIf="password.touched && password.invalid">
+              <small
+                *ngIf="password.errors.required" 
+                class="form-text text-danger">
+                Password is required
+              </small>
+              <small
+                *ngIf="password.errors.invalidPassword" 
+                class="form-text text-danger">
+                Password is too weak
+              </small>
+          </div>
+        </div>
+  
+        <div class="form-group">
+            <label for="passconfirm">Confirm password</label>
+            <input  formControlName="passconfirm" [ngClass]="{'is-invalid':passconfirm.touched && passconfirm.invalid}" type="password" class="form-control" id="passconfirm" placeholder="Confirm Password">
+            <div *ngIf="passconfirm.touched && passconfirm.invalid">
+                <small
+                  *ngIf="passconfirm.errors.required" 
+                  class="form-text text-danger">
+                  Passconfirm is required
+                </small>
+                <small
+                  *ngIf="passwords.errors.invalidConfirm" 
+                  class="form-text text-danger">
+                  Password is not confirmed
+                </small>
+            </div>
+          </div>
+      </div>
 
       <div class="form-group">
         <label for="email">Email address</label>
-        <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <input formControlName="email" [ngClass]="{'is-invalid':email.touched && email.invalid}" type="email" class="form-control" id="email" aria-describedby="email" placeholder="Enter email">
+        <div *ngIf="email.touched && email.invalid">
+            <small
+              *ngIf="email.errors.required" 
+              class="form-text text-danger">
+              Email is required
+            </small>
+            <small
+              *ngIf="email.errors.email" 
+              class="form-text text-danger">
+              Email is not in correct format
+            </small>
+        </div>
       </div>
 
-      <button type="submit" class="btn btn-primary btn-block">Submit</button>
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="!form.valid" (click)="submit()">Submit</button>
     </form>
   </div>
 </div>
