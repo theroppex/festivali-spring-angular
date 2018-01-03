@@ -17,6 +17,8 @@ import { RegistrationService } from './services/registration.service';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { RegFormComponent } from './components/reg-form/reg-form.component';
+import { UserMenuComponent } from './components/user-menu/user-menu.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 @NgModule({
@@ -27,6 +29,8 @@ import { RegFormComponent } from './components/reg-form/reg-form.component';
     HomePageComponent,
     RegisterPageComponent,
     RegFormComponent,
+    UserMenuComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

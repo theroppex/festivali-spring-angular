@@ -44,4 +44,10 @@ public class UsersController {
         UsersEntity user = (UsersEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return user;
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "logout")
+    public String logout() {
+        SecurityContextHolder.clearContext();
+        return "Logout successful";
+    }
 }

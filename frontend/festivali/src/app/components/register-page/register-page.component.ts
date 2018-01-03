@@ -8,6 +8,7 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./register-page.component.css']
 })
 export class RegisterPageComponent implements OnInit {
+  private show : boolean = false;
 
   constructor(private router : Router, private loginService : LoginService) { }
 
@@ -16,6 +17,9 @@ export class RegisterPageComponent implements OnInit {
       .subscribe(
         res => {
           this.router.navigateByUrl("");
+        },
+        err => {
+          this.show = true;
         }
       )
   }

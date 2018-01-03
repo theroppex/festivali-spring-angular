@@ -29,6 +29,16 @@ export class LoginService {
     return this.http.get(url, {headers : this.generateAuthHeader()});
   }
 
+  public getPrincipal() {
+    let url = "http://localhost:8080/api/users/auth";
+    return this.http.get(url, {headers : this.generateAuthHeader()});
+  }
+
+  public logout() {
+    let url = "http://localhost:8080/api/users/logout";
+    return this.http.get(url, {headers : this.generateAuthHeader()});
+  }
+
   public generateAuthHeader() : Headers {
     return new Headers({'x-auth-token':localStorage.getItem("xAuthToken")});
   }
