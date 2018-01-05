@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
@@ -49,5 +50,10 @@ public class UsersController {
     public String logout() {
         SecurityContextHolder.clearContext();
         return "Logout successful";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "active")
+    public Collection<UsersEntity> getActiveUsers() {
+        return usersService.findActiveUsers();
     }
 }
