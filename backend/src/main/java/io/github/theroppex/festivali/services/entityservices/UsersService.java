@@ -8,6 +8,7 @@ import io.github.theroppex.festivali.security.utility.SecurityUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.HashSet;
 
 @Service
@@ -50,5 +51,40 @@ public class UsersService {
 
     public UsersEntity findUserByUsername(String username) {
         return usersRepository.findFirstByUsername(username);
+    }
+
+    public Collection<UsersEntity> findActiveUsers() {
+        return usersRepository.findAllByActive(true);
+    }
+
+    public UsersEntity activateUser(final int id) {
+        UsersEntity user = usersRepository.findOne(id);
+        if(user == null)
+            return null;
+        user.setActive(true);
+        return usersRepository.save(user);
+    }
+
+    public UsersEntity setRole(final int user, final int role) {
+        RolesEntity newRole = rolesRepository.findOne(role);
+        UsersEntity targetUser = usersRepository.findOne(user);
+
+        if(targetUser == null || newRole == null)
+            return null;
+
+        targetUser.getRoles().add(newRole);
+        return usersRepository.save(targetUser);
+    }
+
+    public UsersEntity updateUser(UsersEntity user){
+        return usersRepository.save(user);
+    }
+
+    public void deleteUser(UsersEntity user) {
+        usersRepository.delete(user);
+    }
+
+    public void deleteUser(final int id) {
+        usersRepository.delete(id);
     }
 }

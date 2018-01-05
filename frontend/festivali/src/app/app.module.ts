@@ -19,6 +19,11 @@ import { RegisterPageComponent } from './components/register-page/register-page.
 import { RegFormComponent } from './components/reg-form/reg-form.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { GuestGuardService } from './services/guest-guard.service';
+import { AdminGuardService } from './services/admin-guard.service';
+import { UserService } from './services/user-service.service';
 
 
 @NgModule({
@@ -31,6 +36,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     RegFormComponent,
     UserMenuComponent,
     LogoutComponent,
+    AdminPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,14 +47,19 @@ import { LogoutComponent } from './components/logout/logout.component';
     RouterModule.forRoot(
       [
         {path: '', component: HomePageComponent},
-        {path: 'register', component: RegisterPageComponent},
+        {path: 'register', component: RegisterPageComponent, canActivate: [GuestGuardService]},
+        {path: 'admin', component: AdminPageComponent, canActivate: [AuthGuardService, AdminGuardService]}
       ]
     ),
   ],
   providers: 
   [
     LoginService,
-    RegistrationService
+    RegistrationService,
+    AuthGuardService,
+    GuestGuardService,
+    AdminGuardService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
