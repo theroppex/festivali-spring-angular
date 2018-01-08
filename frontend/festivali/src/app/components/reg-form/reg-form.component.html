@@ -87,9 +87,11 @@
                 <small
                   *ngIf="passconfirm.errors.required" 
                   class="form-text text-danger">
-                  Passconfirm is required
+                   Confirm your password
                 </small>
-                <small
+            </div>
+            <div *ngIf="passconfirm.touched && passwords.invalid">
+              <small
                   *ngIf="passwords.errors.invalidConfirm" 
                   class="form-text text-danger">
                   Password is not confirmed
