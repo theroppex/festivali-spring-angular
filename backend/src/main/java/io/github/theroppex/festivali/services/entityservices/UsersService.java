@@ -56,6 +56,7 @@ public class UsersService {
     public Collection<UsersEntity> findActiveUsers() {
         return usersRepository.findAllByActive(true);
     }
+    public Collection<UsersEntity> findInactiveUsers() { return usersRepository.findAllByActive(false); }
 
     public UsersEntity activateUser(final int id) {
         UsersEntity user = usersRepository.findOne(id);
@@ -87,4 +88,43 @@ public class UsersService {
     public void deleteUser(final int id) {
         usersRepository.delete(id);
     }
+
+    public void banUser(Integer userId) {
+        UsersEntity user = usersRepository.findOne(userId);
+        if(user == null)
+            return;
+
+        user.setBanned(true);
+        usersRepository.save(user);
+    }
+
+    public void unbanUser(Integer userId) {
+        UsersEntity user = usersRepository.findOne(userId);
+        if(user == null)
+            return;
+
+        user.setBanned(false);
+        usersRepository.save(user);
+    }
+
+    public void removeSeller(Integer userId) {
+        UsersEntity user = this.usersRepository.findOne(userId);
+        if(user == null)
+            return;
+
+        user.getRoles().removeIf(rolesEntity -> rolesEntity.getName().equals("SELLER"));
+        this.usersRepository.save(user);
+    }
+
+    public void setSeller(Integer userId) {
+        UsersEntity user = this.usersRepository.findOne(userId);
+        RolesEntity role = this.rolesRepository.findFirstByName("SELLER");
+        if(user == null || role == null)
+            return;
+
+        user.getRoles().add(role);
+        this.usersRepository.save(user);
+    }
+
+
 }

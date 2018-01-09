@@ -4,10 +4,7 @@ import io.github.theroppex.festivali.data.entities.UsersEntity;
 import io.github.theroppex.festivali.services.entityservices.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -55,5 +52,41 @@ public class UsersController {
     @RequestMapping(method = RequestMethod.GET, value = "active")
     public Collection<UsersEntity> getActiveUsers() {
         return usersService.findActiveUsers();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "inactive")
+    public Collection<UsersEntity> getInactiveUsers() {
+        return usersService.findInactiveUsers();
+    }
+
+    //TODO Videti zazto DELTE method ne radi
+    @RequestMapping(method = RequestMethod.DELETE, value = "{userId}")
+    public void deleteUser(@PathVariable("userId") Integer userId) {
+        usersService.deleteUser(userId);
+    }
+
+    @RequestMapping(method = RequestMethod.PATCH, value = "ban/{userId}")
+    public void banUser(@PathVariable("userId") Integer userId) {
+        this.usersService.banUser(userId);
+    }
+
+    @RequestMapping(method = RequestMethod.PATCH, value = "unban/{userId}")
+    public void unbanUser(@PathVariable("userId") Integer userId) {
+        this.usersService.unbanUser(userId);
+    }
+
+    @RequestMapping(method = RequestMethod.PATCH, value = "setseller/{userId}")
+    public void setSeller(@PathVariable("userId") Integer userId) {
+        this.usersService.setSeller(userId);
+    }
+
+    @RequestMapping(method = RequestMethod.PATCH, value = "removeseller/{userId}")
+    public void removeSeller(@PathVariable("userId") Integer userId) {
+        this.usersService.removeSeller(userId);
+    }
+
+    @RequestMapping(method = RequestMethod.PATCH, value = "activate/{userId}")
+    public void activateUser(@PathVariable("userId") Integer userId) {
+        this.usersService.activateUser(userId);
     }
 }

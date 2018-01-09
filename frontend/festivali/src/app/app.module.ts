@@ -4,8 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { AccordionModule, DataTableModule, SharedModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -24,6 +28,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { GuestGuardService } from './services/guest-guard.service';
 import { AdminGuardService } from './services/admin-guard.service';
 import { UserService } from './services/user-service.service';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 
 
 @NgModule({
@@ -37,9 +42,11 @@ import { UserService } from './services/user-service.service';
     UserMenuComponent,
     LogoutComponent,
     AdminPageComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
@@ -51,6 +58,9 @@ import { UserService } from './services/user-service.service';
         {path: 'admin', component: AdminPageComponent, canActivate: [AuthGuardService, AdminGuardService]}
       ]
     ),
+    AccordionModule,
+    DataTableModule,
+    SharedModule,
   ],
   providers: 
   [

@@ -16,6 +16,7 @@ import java.util.Set;
 @Entity
 @Table(name = "users", schema = "pia")
 public class UsersEntity implements UserDetails, Serializable{
+    private static final String ROLE_PREFIX = "ROLE_";
 
     private int userId;
     private String username;
@@ -181,7 +182,7 @@ public class UsersEntity implements UserDetails, Serializable{
     @JsonIgnore
     public Set<UserGrantedAuthority> getAuthorities() {
         Set<UserGrantedAuthority> authorities = new HashSet<>();
-        roles.forEach(role -> {authorities.add(new UserGrantedAuthority(role.getName()));});
+        roles.forEach(role -> {authorities.add(new UserGrantedAuthority(ROLE_PREFIX + role.getName()));});
         return authorities;
     }
 }

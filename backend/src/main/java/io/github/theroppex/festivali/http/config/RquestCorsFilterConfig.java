@@ -16,7 +16,7 @@ public class RquestCorsFilterConfig implements Filter{
         final HttpServletRequest request = (HttpServletRequest) req;
 
         response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, x-auth-token");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Credentials", "true");
@@ -28,7 +28,7 @@ public class RquestCorsFilterConfig implements Filter{
                 e.printStackTrace();
             }
         } else {
-            response.setHeader("Access-Control-Allowed-Methods", "POST, GET, DELETE");
+            response.setHeader("Access-Control-Allowed-Methods", "POST, PUT, PATCH, GET, DELETE");
             response.setHeader("Access-Control-Max-Age", "3600");
             response.setHeader("Access-Control-Allow-Headers", "authorization, content-type, x-auth-token, " +
                     "access-control-request-headers,access-control-request-method,accept,origin,authorization,x-requested-with");

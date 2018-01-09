@@ -1,0 +1,75 @@
+<p-accordion>
+    <p-accordionTab header="New Users" [selected]="true">
+
+        <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input #inactUsrs type="text" pInputText size="45" placeholder="Search users">
+        </div>
+
+        <p-dataTable [value]="inactiveUsers" 
+        [rows]="10" [paginator]="true" 
+        [pageLinks]="3" 
+        [rowsPerPageOptions]="[5,10,20]"
+        [globalFilter]="inactUsrs" #inactUtb>
+
+            <p-column field="username" header="Username"></p-column>
+            <p-column field="name" header="Name"></p-column>
+            <p-column field="lastname" header="Last Name"></p-column>
+            <p-column field="email" header="Email"></p-column>
+
+            <p-column header="Activate">
+                <ng-template let-user="rowData" pTemplate="body">
+                    <button class="btn btn-sm btn-succes" (click)="activateUser(user)">Activate</button>
+                </ng-template>
+            </p-column>
+
+            <p-column header="Delete">
+                <ng-template let-user="rowData" pTemplate="body">
+                    <button class="btn btn-sm btn-danger" (click)="deleteInactiveUser(user)">Delete</button>
+                </ng-template>
+            </p-column>
+
+        </p-dataTable>
+
+    </p-accordionTab>
+
+    <p-accordionTab header="Active Users">
+
+        <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input #actUsrs type="text" pInputText size="45" placeholder="Search users">
+        </div>
+
+        <p-dataTable [value]="activeUsers" 
+        [rows]="10" [paginator]="true" 
+        [pageLinks]="3" 
+        [rowsPerPageOptions]="[5,10,20]"
+        [globalFilter]="actUsrs" #actUtb>
+
+            <p-column field="username" header="Username"></p-column>
+            <p-column field="email" header="Email"></p-column>
+
+            <p-column header="Set seller">
+                <ng-template let-user="rowData" pTemplate="body">
+                    <button class="btn btn-sm btn-danger" *ngIf="!isSeller(user)" (click)="setSeller(user)">Set Seller</button>
+                    <button class="btn btn-sm btn-succes" *ngIf="isSeller(user)" (click)="removeSeller(user)">Remove</button>
+                </ng-template>
+            </p-column>
+
+            <p-column header="Ban User">
+                <ng-template let-user="rowData" pTemplate="body">
+                    <button class="btn btn-sm btn-danger" *ngIf="!user.banned" (click)="banUser(user)">Ban</button>
+                    <button class="btn btn-sm btn-succes" *ngIf="user.banned" (click)="unbanUser(user)">Unban</button>
+                </ng-template>
+            </p-column>
+
+            <p-column header="Delete">
+                <ng-template let-user="rowData" pTemplate="body">
+                    <button class="btn btn-sm btn-danger" (click)="deleteUser(user)">Delete</button>
+                </ng-template>
+            </p-column>
+
+        </p-dataTable>
+
+    </p-accordionTab>
+</p-accordion>
