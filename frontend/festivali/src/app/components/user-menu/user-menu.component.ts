@@ -8,9 +8,11 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./user-menu.component.css']
 })
 export class UserMenuComponent implements OnInit {
-  private user : User = new User();
+  private user : User;
 
-  constructor(private loginService : LoginService) { }
+  constructor(private loginService : LoginService) { 
+    this.user = new User();
+   }
 
   ngOnInit() {
     this.loginService.getPrincipal().subscribe(

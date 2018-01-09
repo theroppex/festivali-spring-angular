@@ -29,6 +29,9 @@ import { GuestGuardService } from './services/guest-guard.service';
 import { AdminGuardService } from './services/admin-guard.service';
 import { UserService } from './services/user-service.service';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { MessagesPageComponent } from './components/messages-page/messages-page.component';
+import { MessageService } from './services/message.service';
+import { MessagesComponent } from './components/messages/messages.component';
 
 
 @NgModule({
@@ -43,6 +46,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
     LogoutComponent,
     AdminPageComponent,
     AdminDashboardComponent,
+    MessagesPageComponent,
+    MessagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
       [
         {path: '', component: HomePageComponent},
         {path: 'register', component: RegisterPageComponent, canActivate: [GuestGuardService]},
-        {path: 'admin', component: AdminPageComponent, canActivate: [AuthGuardService, AdminGuardService]}
+        {path: 'admin', component: AdminPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
+        {path: 'messages', component: MessagesPageComponent, canActivate: [AuthGuardService]}
       ]
     ),
     AccordionModule,
@@ -69,7 +75,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
     AuthGuardService,
     GuestGuardService,
     AdminGuardService,
-    UserService
+    UserService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

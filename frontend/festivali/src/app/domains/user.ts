@@ -1,4 +1,5 @@
 import { Role } from './role';
+import { Message } from './message'
 
 export class User {
     userId : number;
@@ -9,4 +10,5 @@ export class User {
     active : boolean;
     banned : boolean;
     roles : Role[];
+    messages : Message[];
 }

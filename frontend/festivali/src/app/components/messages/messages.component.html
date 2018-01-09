@@ -1,0 +1,4 @@
+<div class="alert alert-dark" role="alert" *ngFor="let msg of user.messages">
+  {{msg.text}}
+  <i class="fa fa-trash pull-right text-danger" (click)="markAsRead(msg)"></i>
+</div>

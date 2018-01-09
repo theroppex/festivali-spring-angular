@@ -1,6 +1,7 @@
 package io.github.theroppex.festivali.http.controllers;
 
 import io.github.theroppex.festivali.data.entities.UsersEntity;
+import io.github.theroppex.festivali.services.entityservices.MessagesService;
 import io.github.theroppex.festivali.services.entityservices.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,10 +17,12 @@ import java.util.Map;
 @RequestMapping("/users/")
 public class UsersController {
     private final UsersService usersService;
+    private final MessagesService messagesService;
 
     @Autowired
-    public UsersController(UsersService usersService) {
+    public UsersController(UsersService usersService, MessagesService messagesService) {
         this.usersService = usersService;
+        this.messagesService = messagesService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -88,5 +91,6 @@ public class UsersController {
     @RequestMapping(method = RequestMethod.PATCH, value = "activate/{userId}")
     public void activateUser(@PathVariable("userId") Integer userId) {
         this.usersService.activateUser(userId);
+        this.messagesService.unicast(userId, "Your account has been activated");
     }
 }

@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users", schema = "pia")
@@ -30,6 +31,7 @@ public class UsersEntity implements UserDetails, Serializable{
     private boolean active;
     private boolean banned;
     private Set<RolesEntity> roles = new HashSet<>();
+    private Set<MessagesEntity> messages = new HashSet<>();
 
     @Id
     @Column(name = "user_id", nullable = false, unique = true)
@@ -117,6 +119,15 @@ public class UsersEntity implements UserDetails, Serializable{
         this.banned = banned;
     }
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+    public Set<MessagesEntity> getMessages() {
+        return this.messages.stream().filter(msg -> msg.getSeen() == false).collect(Collectors.toSet());
+    }
+
+    public void setMessages(Set<MessagesEntity> messages) {
+        this.messages = messages;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -184,5 +195,10 @@ public class UsersEntity implements UserDetails, Serializable{
         Set<UserGrantedAuthority> authorities = new HashSet<>();
         roles.forEach(role -> {authorities.add(new UserGrantedAuthority(ROLE_PREFIX + role.getName()));});
         return authorities;
+    }
+
+    public void addMessage(MessagesEntity msg) {
+        this.messages.add(msg);
+        msg.setUser(this);
     }
 }
