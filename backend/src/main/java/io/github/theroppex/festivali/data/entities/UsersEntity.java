@@ -119,6 +119,7 @@ public class UsersEntity implements UserDetails, Serializable{
         this.banned = banned;
     }
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
     public Set<MessagesEntity> getMessages() {
         return this.messages.stream().filter(msg -> msg.getSeen() == false).collect(Collectors.toSet());

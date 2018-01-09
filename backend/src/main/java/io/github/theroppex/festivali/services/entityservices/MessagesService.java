@@ -7,6 +7,8 @@ import io.github.theroppex.festivali.data.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+
 @Service
 public class MessagesService {
     @Autowired
@@ -35,5 +37,13 @@ public class MessagesService {
 
         msg.setSeen(true);
         this.messagesRepository.save(msg);
+    }
+
+    public Collection<MessagesEntity> getUserMessages(Integer userId) {
+        UsersEntity user = this.usersRepository.findOne(userId);
+        if(user == null)
+            return null;
+
+        return user.getMessages();
     }
 }

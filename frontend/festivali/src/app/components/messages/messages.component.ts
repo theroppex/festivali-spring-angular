@@ -11,6 +11,7 @@ import { MessageService } from '../../services/message.service';
 })
 export class MessagesComponent implements OnInit {
   private user : User = new User();
+  private messages : Message[];
 
   constructor(private loginService : LoginService, private messageService : MessageService) { }
 
@@ -18,6 +19,12 @@ export class MessagesComponent implements OnInit {
     this.loginService.getPrincipal().subscribe(
       res => {
         this.user = <User> res.json();
+        
+        this.messageService.getUserMessages(this.user).subscribe(
+          res => {
+            this.messages = <Message[]> res.json();
+          }
+        );
       }
     );
   }

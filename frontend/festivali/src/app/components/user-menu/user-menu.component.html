@@ -1,10 +1,10 @@
 <div ngbDropdown class="nav-item dropdown" style="margin-right:20px;">
   <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     {{user.username}} 
-    <span *ngIf="user.messages?.length > 0" class="badge badge-pill badge-warning">{{user.messages?.length}}</span>
+    <span *ngIf="messages?.length > 0" class="badge badge-pill badge-warning">{{messages?.length}}</span>
   </a>
   <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <a class="dropdown-item" routerLink="/messages">Messages<span class="badge badge-pill badge-warning">{{user.messages?.length}}</span></a>
+    <a class="dropdown-item" routerLink="/messages">Messages<span class="badge badge-pill badge-warning">{{messages?.length}}</span></a>
     <a class="dropdown-item" href="#">Another action</a>
     <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="#">Something else here</a>
