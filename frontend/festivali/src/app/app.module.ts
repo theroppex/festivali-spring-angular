@@ -9,7 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { AccordionModule, DataTableModule, SharedModule } from 'primeng/primeng';
+import { AccordionModule, DataTableModule, SharedModule, DropdownModule } from 'primeng/primeng';
+import { StepsModule } from 'primeng/primeng';
+import { CalendarModule } from 'primeng/primeng';
+import { ConfirmDialogModule } from 'primeng/primeng';
+import { ConfirmationService } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -32,6 +36,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { MessagesPageComponent } from './components/messages-page/messages-page.component';
 import { MessageService } from './services/message.service';
 import { MessagesComponent } from './components/messages/messages.component';
+import { CreateFestivalPageComponent } from './components/create-festival-page/create-festival-page.component';
+import { FestivalFormComponent } from './components/festival-form/festival-form.component';
 
 
 @NgModule({
@@ -48,6 +54,8 @@ import { MessagesComponent } from './components/messages/messages.component';
     AdminDashboardComponent,
     MessagesPageComponent,
     MessagesComponent,
+    CreateFestivalPageComponent,
+    FestivalFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,12 +69,17 @@ import { MessagesComponent } from './components/messages/messages.component';
         {path: '', component: HomePageComponent},
         {path: 'register', component: RegisterPageComponent, canActivate: [GuestGuardService]},
         {path: 'admin', component: AdminPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
-        {path: 'messages', component: MessagesPageComponent, canActivate: [AuthGuardService]}
+        {path: 'messages', component: MessagesPageComponent, canActivate: [AuthGuardService]},
+        {path: 'createfestival', component: CreateFestivalPageComponent},
       ]
     ),
     AccordionModule,
     DataTableModule,
     SharedModule,
+    StepsModule,
+    CalendarModule,
+    ConfirmDialogModule,
+    DropdownModule,
   ],
   providers: 
   [
@@ -76,7 +89,8 @@ import { MessagesComponent } from './components/messages/messages.component';
     GuestGuardService,
     AdminGuardService,
     UserService,
-    MessageService
+    MessageService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })
