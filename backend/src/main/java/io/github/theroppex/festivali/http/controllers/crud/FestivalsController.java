@@ -4,10 +4,7 @@ package io.github.theroppex.festivali.http.controllers.crud;
 import io.github.theroppex.festivali.data.entities.FestivalsEntity;
 import io.github.theroppex.festivali.services.entityservices.FestivalsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/festivals/")
@@ -27,5 +24,10 @@ public class FestivalsController {
     @RequestMapping(method = RequestMethod.GET, value = "{id}")
     public FestivalsEntity getFestival(@PathVariable("id") Integer id) {
         return this.festivalsService.getFestival(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public FestivalsEntity createFestival(@RequestBody FestivalsEntity festival) {
+        return this.festivalsService.createOrUpdate(festival);
     }
 }

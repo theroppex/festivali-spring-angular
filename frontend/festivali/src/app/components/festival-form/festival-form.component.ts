@@ -5,6 +5,8 @@ import { Festival } from '../../domains/festival';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { Place } from '../../domains/place';
 import { SelectItem } from 'primeng/components/common/selectitem';
+import { FestivalService } from '../../services/festival.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-festival-form',
@@ -12,6 +14,7 @@ import { SelectItem } from 'primeng/components/common/selectitem';
   styleUrls: ['./festival-form.component.css']
 })
 export class FestivalFormComponent implements OnInit {
+  private hasFailed : boolean = false;
   private menuItems : MenuItem[];
   private tabNumber : number = 0;
   private festival : Festival = new Festival();
@@ -20,12 +23,14 @@ export class FestivalFormComponent implements OnInit {
   private places : SelectItem[];
 
 
-  constructor(private confirmationService : ConfirmationService) {
+  constructor(private confirmationService : ConfirmationService, 
+              private festivalService : FestivalService, 
+              private router : Router) {
     let p1 = new Place();
     let p2 = new Place();
-    p1.id = 0;
+    p1.id = 1;
     p1.name = "Beograd";
-    p2.id = 1;
+    p2.id = 2;
     p2.name = "Nis";
     this.places = [
       {label : p1.name, value : p1},
@@ -53,7 +58,16 @@ export class FestivalFormComponent implements OnInit {
         this.confirmationService.confirm({
             message: 'You are about to create new festival. Are you sure?',
             accept: () => {
-                console.log(this.festival);
+                this.festivalService.createFestival(this.festival)
+                .subscribe(
+                  acc => {
+                    this.hasFailed = false;
+                    this.router.navigateByUrl("");
+                  },
+                  rej => {
+                    this.hasFailed = true;
+                  }
+                )
             }
         });
     }

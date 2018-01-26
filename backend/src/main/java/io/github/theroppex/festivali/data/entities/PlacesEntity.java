@@ -1,16 +1,18 @@
 package io.github.theroppex.festivali.data.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "places", schema = "pia")
-public class PlacesEntity {
+public class PlacesEntity implements Serializable {
     private int id;
     private String name;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }

@@ -1,11 +1,12 @@
 package io.github.theroppex.festivali.data.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "locations", schema = "pia", catalog = "")
-public class LocationsEntity {
+@Table(name = "locations", schema = "pia")
+public class LocationsEntity implements Serializable {
     private int id;
     private String name;
     private double lon;
@@ -13,7 +14,8 @@ public class LocationsEntity {
     private PlacesEntity place;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
@@ -52,7 +54,7 @@ public class LocationsEntity {
         this.lat = lat;
     }
 
-    @ManyToOne(targetEntity = PlacesEntity.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE, optional = false)
     @JoinColumn(name = "place", referencedColumnName = "id", nullable = false)
     public PlacesEntity getPlace() {
         return this.place;

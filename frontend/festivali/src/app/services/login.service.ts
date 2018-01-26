@@ -42,8 +42,4 @@ export class LoginService {
   public generateAuthHeader() : Headers {
     return new Headers({'x-auth-token':localStorage.getItem("xAuthToken")});
   }
-
-  public generateBearerHeader() : Headers {
-    return new Headers({'Authorization' : 'Bearer ' + localStorage.getItem("xAuthToken")});
-  }
 }

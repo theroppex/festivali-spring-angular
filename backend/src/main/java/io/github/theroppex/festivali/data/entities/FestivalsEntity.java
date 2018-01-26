@@ -1,12 +1,13 @@
 package io.github.theroppex.festivali.data.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "festivals", schema = "pia")
-public class FestivalsEntity {
+public class FestivalsEntity implements Serializable {
     private int id;
     private String name;
     private String description;
@@ -16,7 +17,8 @@ public class FestivalsEntity {
     private PlacesEntity place;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
@@ -75,7 +77,7 @@ public class FestivalsEntity {
         this.visible = visible;
     }
 
-    @ManyToOne(targetEntity = PlacesEntity.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "place", referencedColumnName = "id", nullable = false)
     public PlacesEntity getPlace() {
         return this.place;

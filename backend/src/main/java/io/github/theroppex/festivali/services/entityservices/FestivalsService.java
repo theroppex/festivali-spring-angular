@@ -1,24 +1,28 @@
 package io.github.theroppex.festivali.services.entityservices;
 
 import io.github.theroppex.festivali.data.entities.FestivalsEntity;
-import io.github.theroppex.festivali.data.repositories.FestivalsRepositroy;
+import io.github.theroppex.festivali.data.repositories.FestivalsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FestivalsService {
-    private final FestivalsRepositroy festivalsRepositroy;
+    private final FestivalsRepository festivalsRepository;
 
     @Autowired
-    public FestivalsService(FestivalsRepositroy festivalsRepositroy) {
-        this.festivalsRepositroy = festivalsRepositroy;
+    public FestivalsService(FestivalsRepository festivalsRepositroy) {
+        this.festivalsRepository = festivalsRepositroy;
     }
 
     public Iterable<FestivalsEntity> getFestivals() {
-        return this.festivalsRepositroy.findAll();
+        return this.festivalsRepository.findAll();
     }
 
     public FestivalsEntity getFestival(Integer id) {
-        return this.festivalsRepositroy.findOne(id);
+        return this.festivalsRepository.findOne(id);
+    }
+
+    public FestivalsEntity createOrUpdate(FestivalsEntity festival) {
+        return this.festivalsRepository.save(festival);
     }
 }

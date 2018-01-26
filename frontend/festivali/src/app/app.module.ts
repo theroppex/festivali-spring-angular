@@ -38,6 +38,7 @@ import { MessageService } from './services/message.service';
 import { MessagesComponent } from './components/messages/messages.component';
 import { CreateFestivalPageComponent } from './components/create-festival-page/create-festival-page.component';
 import { FestivalFormComponent } from './components/festival-form/festival-form.component';
+import { FestivalService } from './services/festival.service';
 
 
 @NgModule({
@@ -90,7 +91,8 @@ import { FestivalFormComponent } from './components/festival-form/festival-form.
     AdminGuardService,
     UserService,
     MessageService,
-    ConfirmationService
+    ConfirmationService,
+    FestivalService
   ],
   bootstrap: [AppComponent]
 })
