@@ -11,4 +11,12 @@ export class FestivalService {
   public createFestival(festival : Festival) {
     return this.http.post("http://localhost:8080/api/festivals/", festival, {headers : this.loginService.generateAuthHeader()});
   }
+
+  public updateFestival(festival : Festival) {
+    return this.http.patch("http://localhost:8080/api/festivals/", festival, {headers : this.loginService.generateAuthHeader()});
+  }
+
+  public getFestivals() {
+    return this.http.get("http://localhost:8080/api/festivals/");
+  }
 }

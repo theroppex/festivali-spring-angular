@@ -72,4 +72,30 @@
         </p-dataTable>
 
     </p-accordionTab>
+
+    <p-accordionTab header="Festivals">
+
+        <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input #fests type="text" pInputText size="45" placeholder="Search users">
+        </div>
+
+        <p-dataTable [value]="festivals" 
+        [rows]="10" [paginator]="true" 
+        [pageLinks]="3" 
+        [rowsPerPageOptions]="[5,10,20]"
+        [globalFilter]="fests" #cfests>
+
+            <p-column field="name" header="Name"></p-column>
+
+            <p-column header="Set visible">
+                <ng-template let-festival="rowData" pTemplate="body">
+                    <button class="btn btn-sm btn-danger" *ngIf="!festival.visible" (click)="setVisible(festival)">Set Visible</button>
+                    <button class="btn btn-sm btn-succes" *ngIf="festival.visible" (click)="setInvisible(festival)">Set Invisible</button>
+                </ng-template>
+            </p-column>
+
+        </p-dataTable>
+
+    </p-accordionTab>
 </p-accordion>

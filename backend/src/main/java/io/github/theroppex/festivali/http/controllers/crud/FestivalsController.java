@@ -4,6 +4,7 @@ package io.github.theroppex.festivali.http.controllers.crud;
 import io.github.theroppex.festivali.data.entities.FestivalsEntity;
 import io.github.theroppex.festivali.services.entityservices.FestivalsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,8 +27,14 @@ public class FestivalsController {
         return this.festivalsService.getFestival(id);
     }
 
+
     @RequestMapping(method = RequestMethod.POST)
     public FestivalsEntity createFestival(@RequestBody FestivalsEntity festival) {
+        return this.festivalsService.createOrUpdate(festival);
+    }
+
+    @RequestMapping(method = RequestMethod.PATCH)
+    public FestivalsEntity updateFestival(@RequestBody FestivalsEntity festival) {
         return this.festivalsService.createOrUpdate(festival);
     }
 }

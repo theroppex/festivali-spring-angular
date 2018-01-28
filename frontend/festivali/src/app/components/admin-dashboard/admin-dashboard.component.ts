@@ -3,6 +3,8 @@ import { UserService } from '../../services/user-service.service';
 import { User } from '../../domains/user';
 import { LoginService } from '../../services/login.service';
 import { Role } from '../../domains/role';
+import { Festival } from '../../domains/festival';
+import { FestivalService } from '../../services/festival.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -13,8 +15,11 @@ export class AdminDashboardComponent implements OnInit {
   private currentUser : User;
   private activeUsers : User[];
   private inactiveUsers : User[];
+  private festivals : Festival[];
 
-  constructor(private usersSrvice : UserService, private loginService : LoginService) { }
+  constructor(private usersSrvice : UserService, 
+              private loginService : LoginService,
+              private festivalService : FestivalService) { }
 
   ngOnInit() {
     this.usersSrvice.getActiveUsers().subscribe(
@@ -32,6 +37,12 @@ export class AdminDashboardComponent implements OnInit {
         this.currentUser = <User> res.json();
       }
     );
+
+    this.festivalService.getFestivals().subscribe(
+      res => {
+        this.festivals = <Festival[]> res.json();
+      }
+    )
   }
 
   deleteUser(user : User) {
@@ -87,5 +98,23 @@ export class AdminDashboardComponent implements OnInit {
         this.inactiveUsers = [ ...this.inactiveUsers.slice(0, index), ...this.inactiveUsers.slice(index + 1, this.inactiveUsers.length ) ];
       }
     );
+  }
+
+  setVisible(festival : Festival) {
+    festival.visible = true;
+    this.festivalService.updateFestival(festival).subscribe(
+      res => {
+        this.festivals = [...this.festivals];
+      }
+    )
+  }
+
+  setInvisible(festival : Festival) {
+    festival.visible = false;
+    this.festivalService.updateFestival(festival).subscribe(
+      res => {
+        this.festivals = [...this.festivals];
+      }
+    )
   }
 }
