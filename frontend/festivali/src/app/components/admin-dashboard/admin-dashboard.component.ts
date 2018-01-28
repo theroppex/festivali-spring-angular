@@ -7,6 +7,8 @@ import { Festival } from '../../domains/festival';
 import { FestivalService } from '../../services/festival.service';
 import { Place } from '../../domains/place';
 import { PlaceService } from '../../services/place.service';
+import { Location } from '../../domains/location';
+import { LocationService } from '../../services/location.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -19,11 +21,13 @@ export class AdminDashboardComponent implements OnInit {
   private inactiveUsers : User[];
   private festivals : Festival[];
   private places : Place[];
+  private locations : Location[];
 
   constructor(private usersSrvice : UserService, 
               private loginService : LoginService,
               private festivalService : FestivalService,
-              private placesService : PlaceService) { }
+              private placesService : PlaceService,
+              private locationService : LocationService) { }
 
   ngOnInit() {
     this.usersSrvice.getActiveUsers().subscribe(
@@ -51,6 +55,12 @@ export class AdminDashboardComponent implements OnInit {
     this.placesService.getPlaces().subscribe(
       res => {
         this.places = <Place[]> res.json();
+      }
+    )
+
+    this.locationService.getLocations().subscribe(
+      res => {
+        this.locations = <Location[]> res.json();
       }
     )
   }

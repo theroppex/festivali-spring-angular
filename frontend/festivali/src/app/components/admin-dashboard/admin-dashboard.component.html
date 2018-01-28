@@ -117,4 +117,29 @@
         </p-dataTable>
 
     </p-accordionTab>
+
+    <p-accordionTab header="Loccations">
+
+        <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input #lctns type="text" pInputText size="45" placeholder="Search places">
+        </div>
+
+        <p-dataTable [value]="locations" 
+        [rows]="10" [paginator]="true" 
+        [pageLinks]="3" 
+        [rowsPerPageOptions]="[5,10,20]"
+        [globalFilter]="lctns" #clctns>
+
+            <p-column field="name" header="Name"></p-column>
+
+            <p-column header="Place">
+                <ng-template let-location="rowData" pTemplate="body">
+                    {{location.place.name}}
+                </ng-template>
+            </p-column>
+
+        </p-dataTable>
+
+    </p-accordionTab>
 </p-accordion>

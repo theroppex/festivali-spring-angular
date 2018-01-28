@@ -40,6 +40,7 @@ import { CreateFestivalPageComponent } from './components/create-festival-page/c
 import { FestivalFormComponent } from './components/festival-form/festival-form.component';
 import { FestivalService } from './services/festival.service';
 import { PlaceService } from './services/place.service';
+import { LocationService } from './services/location.service';
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import { PlaceService } from './services/place.service';
     ConfirmationService,
     FestivalService,
     PlaceService,
+    LocationService,
   ],
   bootstrap: [AppComponent]
 })
