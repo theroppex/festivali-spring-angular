@@ -14,6 +14,7 @@ import { StepsModule } from 'primeng/primeng';
 import { CalendarModule } from 'primeng/primeng';
 import { ConfirmDialogModule } from 'primeng/primeng';
 import { ConfirmationService } from 'primeng/primeng';
+import { MenuModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -83,6 +84,7 @@ import { LocationService } from './services/location.service';
     CalendarModule,
     ConfirmDialogModule,
     DropdownModule,
+    MenuModule,
   ],
   providers: 
   [
