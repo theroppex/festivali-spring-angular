@@ -39,6 +39,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { CreateFestivalPageComponent } from './components/create-festival-page/create-festival-page.component';
 import { FestivalFormComponent } from './components/festival-form/festival-form.component';
 import { FestivalService } from './services/festival.service';
+import { PlaceService } from './services/place.service';
 
 
 @NgModule({
@@ -92,7 +93,8 @@ import { FestivalService } from './services/festival.service';
     UserService,
     MessageService,
     ConfirmationService,
-    FestivalService
+    FestivalService,
+    PlaceService,
   ],
   bootstrap: [AppComponent]
 })
