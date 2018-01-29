@@ -1,0 +1,14 @@
+
+<div class="form-group">
+  <label for="name">Name</label>
+  <input class="form-control" type="text" placeholder="Place name" id="name" [(ngModel)]="place.name">
+</div>
+
+<button type="button" 
+          class="btn btn-danger btn-sm pull-right" 
+          (click)="confirm()" 
+          [disabled]="!isValid()">
+          
+              Submit
+            
+</button>

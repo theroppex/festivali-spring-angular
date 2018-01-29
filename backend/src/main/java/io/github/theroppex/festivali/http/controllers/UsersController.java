@@ -62,7 +62,6 @@ public class UsersController {
         return usersService.findInactiveUsers();
     }
 
-    //TODO Videti zazto DELTE method ne radi
     @RequestMapping(method = RequestMethod.DELETE, value = "{userId}")
     public void deleteUser(@PathVariable("userId") Integer userId) {
         usersService.deleteUser(userId);

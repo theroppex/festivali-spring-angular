@@ -78,7 +78,7 @@ export class FestivalFormComponent implements OnInit {
                 .subscribe(
                   acc => {
                     this.hasFailed = false;
-                    this.router.navigateByUrl("");
+                    this.router.navigateByUrl("/admin");
                   },
                   rej => {
                     this.hasFailed = true;
@@ -95,7 +95,9 @@ export class FestivalFormComponent implements OnInit {
 
   public isValid() : boolean {
     return this.festival.description != null
+            && this.festival.description != ""
             && this.festival.name != null
+            && this.festival.name != ""
             && this.festival.place != null 
             && this.festival.startDate != null 
             && this.festival.endDate != null; 

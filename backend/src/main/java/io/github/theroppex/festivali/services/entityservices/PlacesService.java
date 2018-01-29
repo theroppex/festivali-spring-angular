@@ -21,4 +21,8 @@ public class PlacesService {
     public PlacesEntity getPlace(Integer id) {
         return this.placesRepository.findOne(id);
     }
+
+    public PlacesEntity createOrUpdate(PlacesEntity place) {
+        return this.placesRepository.save(place);
+    }
 }
