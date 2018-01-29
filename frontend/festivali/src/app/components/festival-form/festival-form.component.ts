@@ -7,6 +7,7 @@ import { Place } from '../../domains/place';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { FestivalService } from '../../services/festival.service';
 import { Router } from '@angular/router';
+import { PlaceService } from '../../services/place.service';
 
 @Component({
   selector: 'app-festival-form',
@@ -24,7 +25,8 @@ export class FestivalFormComponent implements OnInit {
 
 
   constructor(private confirmationService : ConfirmationService, 
-              private festivalService : FestivalService, 
+              private festivalService : FestivalService,
+              private placesService : PlaceService, 
               private router : Router) {
     let p1 = new Place();
     let p2 = new Place();
@@ -44,6 +46,20 @@ export class FestivalFormComponent implements OnInit {
       {label : "Place"},
       {label : "Date"},
     ];
+
+    this.placesService.getPlaces().subscribe(
+      res => {
+        let newSelectItems : SelectItem[] = [];
+
+        let newPlaces : Place[] = <Place[]> res.json();
+
+        for(let p of newPlaces) {
+          newSelectItems.push({label : p.name, value : p});
+        }
+
+        this.places = newSelectItems;
+      }
+    );
   }
 
   public next() {
