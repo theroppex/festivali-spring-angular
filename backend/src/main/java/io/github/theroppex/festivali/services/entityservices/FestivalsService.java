@@ -25,4 +25,8 @@ public class FestivalsService {
     public FestivalsEntity createOrUpdate(FestivalsEntity festival) {
         return this.festivalsRepository.save(festival);
     }
+
+    public Iterable<FestivalsEntity> getFestivalsByMovieName(String movieName) {
+        return this.festivalsRepository.getFestivalsByMovieName(movieName);
+    }
 }

@@ -37,4 +37,9 @@ public class FestivalsController {
     public FestivalsEntity updateFestival(@RequestBody FestivalsEntity festival) {
         return this.festivalsService.createOrUpdate(festival);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "movie")
+    public Iterable<FestivalsEntity> getFestivalsByMovieName(@RequestParam("title") String movieName) {
+        return this.festivalsService.getFestivalsByMovieName(movieName);
+    }
 }
