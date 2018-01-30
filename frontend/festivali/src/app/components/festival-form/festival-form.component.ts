@@ -27,18 +27,7 @@ export class FestivalFormComponent implements OnInit {
   constructor(private confirmationService : ConfirmationService, 
               private festivalService : FestivalService,
               private placesService : PlaceService, 
-              private router : Router) {
-    let p1 = new Place();
-    let p2 = new Place();
-    p1.id = 1;
-    p1.name = "Beograd";
-    p2.id = 2;
-    p2.name = "Nis";
-    this.places = [
-      {label : p1.name, value : p1},
-      {label : p2.name, value : p2}
-    ];
-   }
+              private router : Router) {}
 
   ngOnInit() {
     this.menuItems = [

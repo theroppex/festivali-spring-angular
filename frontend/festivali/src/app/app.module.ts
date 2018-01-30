@@ -44,6 +44,8 @@ import { PlaceService } from './services/place.service';
 import { LocationService } from './services/location.service';
 import { CreatePlacePageComponent } from './components/create-place-page/create-place-page.component';
 import { PlaceFormComponent } from './components/place-form/place-form.component';
+import { CreateLocationPageComponent } from './components/create-location-page/create-location-page.component';
+import { LocationFormComponent } from './components/location-form/location-form.component';
 
 
 @NgModule({
@@ -64,6 +66,8 @@ import { PlaceFormComponent } from './components/place-form/place-form.component
     FestivalFormComponent,
     CreatePlacePageComponent,
     PlaceFormComponent,
+    CreateLocationPageComponent,
+    LocationFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +83,8 @@ import { PlaceFormComponent } from './components/place-form/place-form.component
         {path: 'admin', component: AdminPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
         {path: 'messages', component: MessagesPageComponent, canActivate: [AuthGuardService]},
         {path: 'createfestival', component: CreateFestivalPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
-        {path: 'createplace', component: CreatePlacePageComponent, canActivate: [AuthGuardService, AdminGuardService]}
+        {path: 'createplace', component: CreatePlacePageComponent, canActivate: [AuthGuardService, AdminGuardService]},
+        {path: 'createlocation', component: CreateLocationPageComponent, canActivate: [AuthGuardService, AdminGuardService]}
       ]
     ),
     AccordionModule,

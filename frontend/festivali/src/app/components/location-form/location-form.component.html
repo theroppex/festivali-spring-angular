@@ -1,0 +1,28 @@
+<div class="form-group">
+  <label for="name">Name</label>
+  <input class="form-control" type="text" placeholder="Location name" id="name" [(ngModel)]="location.name">
+</div>
+
+<div class="form-group">
+  <label for="name">Longitude</label>
+  <input class="form-control" type="number" placeholder="Longitude" id="lon" step="any" [(ngModel)]="location.lon">
+</div>
+
+<div class="form-group">
+  <label for="name">Latitude</label>
+  <input class="form-control" type="number" placeholder="Latitude" id="lat" step="any" [(ngModel)]="location.lat">
+</div>
+
+<div class="form-group">
+    <label for="place">Select a place of the festival</label> <br />
+    <p-dropdown [options]="places" [(ngModel)]="location.place" placeholder="Select a place of the location"></p-dropdown>
+</div>
+
+<button type="button" 
+          class="btn btn-danger btn-sm pull-right" 
+          (click)="confirm()" 
+          [disabled]="!isValid()">
+          
+              Submit
+            
+</button>

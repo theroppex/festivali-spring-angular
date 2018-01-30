@@ -17,7 +17,7 @@ export class AdminPageComponent implements OnInit {
         label : 'Create',
         items: [
           {label: 'Place', icon: 'fa-plus', routerLink : '/createplace'},
-          {label: 'Location', icon: 'fa-plus'},
+          {label: 'Location', icon: 'fa-plus', routerLink : '/createlocation'},
           {label: 'Festival', icon: 'fa-plus', routerLink : '/createfestival'}
         ]
       }
