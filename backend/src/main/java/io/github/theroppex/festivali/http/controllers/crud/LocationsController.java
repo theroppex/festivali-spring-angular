@@ -3,10 +3,7 @@ package io.github.theroppex.festivali.http.controllers.crud;
 import io.github.theroppex.festivali.data.entities.LocationsEntity;
 import io.github.theroppex.festivali.services.entityservices.LocationsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/locations/")
@@ -27,5 +24,15 @@ public class LocationsController {
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<LocationsEntity> getLocations() {
         return this.locationsService.getLocations();
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public LocationsEntity createLocation(@RequestBody LocationsEntity location) {
+        return this.locationsService.createOrUpdate(location);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public void deleteLocation(@RequestBody LocationsEntity location) {
+        this.locationsService.delete(location);
     }
 }

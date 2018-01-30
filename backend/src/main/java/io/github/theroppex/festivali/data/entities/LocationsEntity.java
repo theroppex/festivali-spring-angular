@@ -2,7 +2,9 @@ package io.github.theroppex.festivali.data.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "locations", schema = "pia")
@@ -12,6 +14,7 @@ public class LocationsEntity implements Serializable {
     private double lon;
     private double lat;
     private PlacesEntity place;
+    private Set<ProjectionsEntity> projections = new HashSet<>();
 
     @Id
     @Column(name = "id", nullable = false, unique = true)
@@ -79,5 +82,20 @@ public class LocationsEntity implements Serializable {
     public int hashCode() {
 
         return Objects.hash(id, name, lon, lat);
+    }
+
+
+    @OneToMany(targetEntity = ProjectionsEntity.class, mappedBy = "location", fetch = FetchType.EAGER)
+    public Set<ProjectionsEntity> getProjections() {
+        return this.projections;
+    }
+
+    public void setProjections(Set<ProjectionsEntity> projections) {
+        this.projections = projections;
+    }
+
+    public void addProjection(ProjectionsEntity projection) {
+        projection.setLocation(this);
+        this.projections.add(projection);
     }
 }

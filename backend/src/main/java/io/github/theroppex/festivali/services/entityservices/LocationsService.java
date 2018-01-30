@@ -21,4 +21,12 @@ public class LocationsService {
     public LocationsEntity getLocation(Integer id) {
         return this.locationsRepository.findOne(id);
     }
+
+    public LocationsEntity createOrUpdate(LocationsEntity location) {
+        return this.locationsRepository.save(location);
+    }
+
+    public void delete(LocationsEntity location) {
+        this.locationsRepository.delete(location);
+    }
 }

@@ -25,4 +25,8 @@ public class PlacesService {
     public PlacesEntity createOrUpdate(PlacesEntity place) {
         return this.placesRepository.save(place);
     }
+
+    public void delete(PlacesEntity place) {
+        this.placesRepository.delete(place);
+    }
 }

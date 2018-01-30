@@ -31,4 +31,9 @@ public class PlacesController {
     public PlacesEntity createPlace(@RequestBody PlacesEntity place) {
         return this.placesService.createOrUpdate(place);
     }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public void deletePlace(@RequestBody PlacesEntity place) {
+        this.placesService.delete(place);
+    }
 }
