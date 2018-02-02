@@ -15,6 +15,7 @@ import { CalendarModule } from 'primeng/primeng';
 import { ConfirmDialogModule } from 'primeng/primeng';
 import { ConfirmationService } from 'primeng/primeng';
 import { MenuModule } from 'primeng/primeng';
+import { DialogModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -46,6 +47,9 @@ import { CreatePlacePageComponent } from './components/create-place-page/create-
 import { PlaceFormComponent } from './components/place-form/place-form.component';
 import { CreateLocationPageComponent } from './components/create-location-page/create-location-page.component';
 import { LocationFormComponent } from './components/location-form/location-form.component';
+import { CreateProjectionPageComponent } from './components/create-projection-page/create-projection-page.component';
+import { ProjectionFormComponent } from './components/projection-form/projection-form.component';
+import { MovieService } from './services/movie.service';
 
 
 @NgModule({
@@ -68,6 +72,8 @@ import { LocationFormComponent } from './components/location-form/location-form.
     PlaceFormComponent,
     CreateLocationPageComponent,
     LocationFormComponent,
+    CreateProjectionPageComponent,
+    ProjectionFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +90,8 @@ import { LocationFormComponent } from './components/location-form/location-form.
         {path: 'messages', component: MessagesPageComponent, canActivate: [AuthGuardService]},
         {path: 'createfestival', component: CreateFestivalPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
         {path: 'createplace', component: CreatePlacePageComponent, canActivate: [AuthGuardService, AdminGuardService]},
-        {path: 'createlocation', component: CreateLocationPageComponent, canActivate: [AuthGuardService, AdminGuardService]}
+        {path: 'createlocation', component: CreateLocationPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
+        {path: 'createprojection/:id', component: CreateProjectionPageComponent, canActivate: [AuthGuardService, AdminGuardService]}
       ]
     ),
     AccordionModule,
@@ -95,6 +102,7 @@ import { LocationFormComponent } from './components/location-form/location-form.
     ConfirmDialogModule,
     DropdownModule,
     MenuModule,
+    DialogModule,
   ],
   providers: 
   [
@@ -109,6 +117,7 @@ import { LocationFormComponent } from './components/location-form/location-form.
     FestivalService,
     PlaceService,
     LocationService,
+    MovieService,
   ],
   bootstrap: [AppComponent]
 })

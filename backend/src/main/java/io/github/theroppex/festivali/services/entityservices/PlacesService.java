@@ -26,7 +26,7 @@ public class PlacesService {
         return this.placesRepository.save(place);
     }
 
-    public void delete(PlacesEntity place) {
+    public void delete(Integer place) {
         this.placesRepository.delete(place);
     }
 }

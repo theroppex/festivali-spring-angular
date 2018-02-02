@@ -15,4 +15,8 @@ export class LocationService {
   public createLocation(location : Location) {
     return this.http.post("http://localhost:8080/api/locations/", location, {headers : this.loginService.generateAuthHeader()});
   }
+
+  public deleteLocation(location : Location) {
+    return this.http.delete("http://localhost:8080/api/locations/" + location.id, {headers : this.loginService.generateAuthHeader()});
+  }
 }

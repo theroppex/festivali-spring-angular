@@ -19,4 +19,8 @@ export class FestivalService {
   public getFestivals() {
     return this.http.get("http://localhost:8080/api/festivals/");
   }
+
+  public getFestival(id : number) {
+    return this.http.get("http://localhost:8080/api/festivals/" + id, {headers : this.loginService.generateAuthHeader()});
+  }
 }

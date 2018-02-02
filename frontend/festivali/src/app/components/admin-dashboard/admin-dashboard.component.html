@@ -114,6 +114,12 @@
 
             <p-column field="name" header="Name"></p-column>
 
+            <p-column header="Delete">
+                <ng-template let-place="rowData" pTemplate="body">
+                    <button class="btn btn-sm btn-danger" (click)="deletePlace(place)">Delete</button>
+                </ng-template>
+            </p-column>
+
         </p-dataTable>
 
     </p-accordionTab>
@@ -136,6 +142,12 @@
             <p-column header="Place">
                 <ng-template let-location="rowData" pTemplate="body">
                     {{location.place.name}}
+                </ng-template>
+            </p-column>
+
+            <p-column header="Delete">
+                <ng-template let-location="rowData" pTemplate="body">
+                    <button class="btn btn-sm btn-danger" (click)="deleteLocation(location)">Delete</button>
                 </ng-template>
             </p-column>
 

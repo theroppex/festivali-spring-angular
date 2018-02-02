@@ -31,8 +31,8 @@ public class LocationsController {
         return this.locationsService.createOrUpdate(location);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public void deleteLocation(@RequestBody LocationsEntity location) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "{id}")
+    public void deleteLocation(@PathVariable("id") Integer location) {
         this.locationsService.delete(location);
     }
 }

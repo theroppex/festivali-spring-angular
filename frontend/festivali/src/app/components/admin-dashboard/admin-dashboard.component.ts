@@ -137,4 +137,22 @@ export class AdminDashboardComponent implements OnInit {
       }
     )
   }
+
+  deletePlace(place : Place) {
+    this.placesService.deletePlace(place).subscribe(
+      res => {
+        const index = this.places.indexOf(place);
+        this.places = [ ...this.places.slice(0, index), ...this.places.slice(index + 1, this.places.length ) ];
+      }
+    );
+  }
+
+  deleteLocation(location : Location) {
+    this.locationService.deleteLocation(location).subscribe(
+      res => {
+        const index = this.locations.indexOf(location);
+        this.locations = [ ...this.locations.slice(0, index), ...this.locations.slice(index + 1, this.locations.length ) ];
+      }
+    );
+  }
 }
