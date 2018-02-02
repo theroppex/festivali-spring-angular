@@ -1,6 +1,7 @@
 package io.github.theroppex.festivali.data.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -86,7 +87,7 @@ public class ProjectionsEntity {
         return Objects.hash(id, date, hour, tickets, cancelled);
     }
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne
     @JoinColumn(name = "movie", referencedColumnName = "id", nullable = false)
     public MoviesEntity getMovie() {
@@ -97,7 +98,7 @@ public class ProjectionsEntity {
         this.movie = moviesByMovie;
     }
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne
     @JoinColumn(name = "festival", referencedColumnName = "id", nullable = false)
     public FestivalsEntity getFestival() {
@@ -108,7 +109,7 @@ public class ProjectionsEntity {
         this.festival = festival;
     }
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne
     @JoinColumn(name = "location", referencedColumnName = "id", nullable = false)
     public LocationsEntity getLocation() {

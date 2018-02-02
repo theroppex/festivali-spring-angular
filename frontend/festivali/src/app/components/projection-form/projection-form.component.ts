@@ -8,6 +8,7 @@ import { LocationService } from '../../services/location.service';
 import { Location } from '../../domains/location';
 import { Movie } from '../../domains/movie';
 import { MovieService } from '../../services/movie.service';
+import { ProjectionService } from '../../services/projection.service';
 
 @Component({
   selector: 'app-projection-form',
@@ -27,7 +28,8 @@ export class ProjectionFormComponent implements OnInit {
   constructor(private route : ActivatedRoute, 
               private festivalService : FestivalService,
               private locationService: LocationService,
-              private movieService : MovieService) { }
+              private movieService : MovieService,
+              private projectionService : ProjectionService) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -89,7 +91,12 @@ export class ProjectionFormComponent implements OnInit {
   }
 
   confirm() {
-
+    this.projectionService.createProjection(this.projection).subscribe(
+      res => {
+        this.projection = new Projection();
+        this.projection.festival = this.festival;
+      }
+    );
   }
 
   showMoviesMenu() {

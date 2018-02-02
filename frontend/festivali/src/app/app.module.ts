@@ -50,6 +50,7 @@ import { LocationFormComponent } from './components/location-form/location-form.
 import { CreateProjectionPageComponent } from './components/create-projection-page/create-projection-page.component';
 import { ProjectionFormComponent } from './components/projection-form/projection-form.component';
 import { MovieService } from './services/movie.service';
+import { ProjectionService } from './services/projection.service';
 
 
 @NgModule({
@@ -118,6 +119,7 @@ import { MovieService } from './services/movie.service';
     PlaceService,
     LocationService,
     MovieService,
+    ProjectionService
   ],
   bootstrap: [AppComponent]
 })
