@@ -15,6 +15,7 @@ public class RolesEntity implements Serializable {
 
     @Id
     @Column(name = "role_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getRoleId() {
         return roleId;
     }

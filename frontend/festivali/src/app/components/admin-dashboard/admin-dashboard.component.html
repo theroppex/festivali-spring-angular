@@ -19,13 +19,17 @@
 
             <p-column header="Activate">
                 <ng-template let-user="rowData" pTemplate="body">
-                    <button class="btn btn-sm btn-succes" (click)="activateUser(user)">Activate</button>
+                    <div class="text-center">
+                        <button class="btn btn-sm btn-succes" (click)="activateUser(user)">Activate</button>
+                    </div>
                 </ng-template>
             </p-column>
 
             <p-column header="Delete">
                 <ng-template let-user="rowData" pTemplate="body">
-                    <button class="btn btn-sm btn-danger" (click)="deleteInactiveUser(user)">Delete</button>
+                    <div class="text-cetner">
+                        <button class="btn btn-sm btn-danger" (click)="deleteInactiveUser(user)">Delete</button>
+                    </div>
                 </ng-template>
             </p-column>
 
@@ -51,21 +55,27 @@
 
             <p-column header="Set seller">
                 <ng-template let-user="rowData" pTemplate="body">
-                    <button class="btn btn-sm btn-danger" *ngIf="!isSeller(user)" (click)="setSeller(user)">Set Seller</button>
-                    <button class="btn btn-sm btn-succes" *ngIf="isSeller(user)" (click)="removeSeller(user)">Remove</button>
+                    <div class="text-center">
+                        <button class="btn btn-sm btn-danger" *ngIf="!isSeller(user)" (click)="setSeller(user)">Set Seller</button>
+                        <button class="btn btn-sm btn-succes" *ngIf="isSeller(user)" (click)="removeSeller(user)">Remove</button>
+                    </div>
                 </ng-template>
             </p-column>
 
             <p-column header="Ban User">
                 <ng-template let-user="rowData" pTemplate="body">
-                    <button class="btn btn-sm btn-danger" *ngIf="!user.banned" (click)="banUser(user)">Ban</button>
-                    <button class="btn btn-sm btn-succes" *ngIf="user.banned" (click)="unbanUser(user)">Unban</button>
+                    <div class="text-center">
+                        <button class="btn btn-sm btn-danger" *ngIf="!user.banned" (click)="banUser(user)">Ban</button>
+                        <button class="btn btn-sm btn-succes" *ngIf="user.banned" (click)="unbanUser(user)">Unban</button>
+                    </div>
                 </ng-template>
             </p-column>
 
             <p-column header="Delete">
                 <ng-template let-user="rowData" pTemplate="body">
-                    <button class="btn btn-sm btn-danger" (click)="deleteUser(user)">Delete</button>
+                    <div class="text-center">
+                        <button class="btn btn-sm btn-danger" (click)="deleteUser(user)">Delete</button>
+                    </div>
                 </ng-template>
             </p-column>
 
@@ -88,10 +98,20 @@
 
             <p-column field="name" header="Name"></p-column>
 
+            <p-column header="Add Projection">
+                <ng-template let-fest="rowData" pTemplate="body">
+                    <div class="text-center">
+                        <a routerLink="/createprojection/{{fest.id}}"><button class="btn btn-sm btn-primary">Add</button></a>
+                    </div>
+                </ng-template>
+            </p-column>
+
             <p-column header="Set visible">
                 <ng-template let-festival="rowData" pTemplate="body">
-                    <button class="btn btn-sm btn-danger" *ngIf="!festival.visible" (click)="setVisible(festival)">Set Visible</button>
-                    <button class="btn btn-sm btn-succes" *ngIf="festival.visible" (click)="setInvisible(festival)">Set Invisible</button>
+                    <div class="text-center">
+                        <button class="btn btn-sm btn-danger" *ngIf="!festival.visible" (click)="setVisible(festival)">Set Visible</button>
+                        <button class="btn btn-sm btn-succes" *ngIf="festival.visible" (click)="setInvisible(festival)">Set Invisible</button>
+                    </div>
                 </ng-template>
             </p-column>
 
@@ -116,7 +136,9 @@
 
             <p-column header="Delete">
                 <ng-template let-place="rowData" pTemplate="body">
-                    <button class="btn btn-sm btn-danger" (click)="deletePlace(place)">Delete</button>
+                    <div class="text-center">
+                        <button class="btn btn-sm btn-danger" (click)="deletePlace(place)">Delete</button>
+                    </div>
                 </ng-template>
             </p-column>
 
@@ -147,7 +169,9 @@
 
             <p-column header="Delete">
                 <ng-template let-location="rowData" pTemplate="body">
-                    <button class="btn btn-sm btn-danger" (click)="deleteLocation(location)">Delete</button>
+                    <div class="text-center">
+                        <button class="btn btn-sm btn-danger" (click)="deleteLocation(location)">Delete</button>
+                    </div>
                 </ng-template>
             </p-column>
 

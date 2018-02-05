@@ -17,4 +17,8 @@ public class MovieService {
     public Iterable<MoviesEntity> getMovies() {
         return this.movieRepository.findAll();
     }
+
+    public MoviesEntity createOrUpdate(MoviesEntity movie) {
+        return this.movieRepository.save(movie);
+    }
 }

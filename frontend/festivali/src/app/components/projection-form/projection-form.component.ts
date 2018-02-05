@@ -24,6 +24,7 @@ export class ProjectionFormComponent implements OnInit {
   private maxDate : Date = new Date();
   private festival : Festival = new Festival();
   private showDialog : boolean = false;
+  private movie : Movie = new Movie();
 
   constructor(private route : ActivatedRoute, 
               private festivalService : FestivalService,
@@ -100,6 +101,24 @@ export class ProjectionFormComponent implements OnInit {
   }
 
   showMoviesMenu() {
+    this.movie = new Movie();
     this.showDialog = !this.showDialog;
+  }
+
+  validMovie() {
+    return this.movie.title != null && this.movie.title != "";
+  }
+
+  confirmMovie() {
+    this.movieService.createMovie(this.movie).subscribe(
+      res => {
+        let newMovie = <Movie> res.json();
+        console.log(newMovie);
+        this.movies.push({label : newMovie.title, value : newMovie});
+        this.movies = [...this.movies];
+      }
+    );
+
+    this.showDialog = false;
   }
 }

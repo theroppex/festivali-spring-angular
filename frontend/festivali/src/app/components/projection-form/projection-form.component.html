@@ -50,14 +50,14 @@
 
   <div class="form-group">
     <label for="title">Title</label>
-    <input class="form-control" type="text" placeholder="Movie title" id="title">
+    <input class="form-control" type="text" placeholder="Movie title" id="title" [(ngModel)]="movie.title">
   </div>
 
   <p-footer>
     <button type="button" 
     class="btn btn-danger btn-sm pull-right" 
-    (click)="confirm()" 
-    [disabled]="!isValid()" style="margin-bottom:15px">
+    (click)="confirmMovie()" 
+    [disabled]="!validMovie()" style="margin-bottom:15px">
         Submit    
     </button>
   </p-footer>
