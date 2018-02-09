@@ -2,6 +2,7 @@ package io.github.theroppex.festivali.http.controllers.crud;
 
 
 import io.github.theroppex.festivali.data.entities.FestivalsEntity;
+import io.github.theroppex.festivali.data.entities.MoviesEntity;
 import io.github.theroppex.festivali.services.entityservices.FestivalsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -41,5 +42,10 @@ public class FestivalsController {
     @RequestMapping(method = RequestMethod.GET, value = "movie")
     public Iterable<FestivalsEntity> getFestivalsByMovieName(@RequestParam("title") String movieName) {
         return this.festivalsService.getFestivalsByMovieName(movieName);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "{id}/movies/")
+    public Iterable<MoviesEntity> getMoviesByFestival(@PathVariable("id") Integer id) {
+        return this.festivalsService.getMoviesByFestival(id);
     }
 }

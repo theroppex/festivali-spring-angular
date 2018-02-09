@@ -1,6 +1,7 @@
 package io.github.theroppex.festivali.services.entityservices;
 
 import io.github.theroppex.festivali.data.entities.FestivalsEntity;
+import io.github.theroppex.festivali.data.entities.MoviesEntity;
 import io.github.theroppex.festivali.data.repositories.FestivalsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,9 @@ public class FestivalsService {
 
     public Iterable<FestivalsEntity> getFestivalsByMovieName(String movieName) {
         return this.festivalsRepository.getFestivalsByMovieName(movieName);
+    }
+
+    public Iterable<MoviesEntity> getMoviesByFestival(Integer id) {
+        return this.festivalsRepository.getMoviesByFestival(id);
     }
 }

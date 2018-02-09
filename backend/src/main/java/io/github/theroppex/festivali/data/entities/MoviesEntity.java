@@ -1,5 +1,7 @@
 package io.github.theroppex.festivali.data.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -72,6 +74,7 @@ public class MoviesEntity {
         return Objects.hash(id, title, rating, count);
     }
 
+    @JsonIgnore
     @OneToMany(targetEntity = ProjectionsEntity.class, mappedBy = "movie", fetch = FetchType.EAGER)
     public Set<ProjectionsEntity> getProjections() {
         return this.projections;

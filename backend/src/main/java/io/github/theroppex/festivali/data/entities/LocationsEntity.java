@@ -1,5 +1,7 @@
 package io.github.theroppex.festivali.data.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -85,6 +87,7 @@ public class LocationsEntity implements Serializable {
     }
 
 
+    @JsonIgnore
     @OneToMany(targetEntity = ProjectionsEntity.class, mappedBy = "location", fetch = FetchType.EAGER)
     public Set<ProjectionsEntity> getProjections() {
         return this.projections;

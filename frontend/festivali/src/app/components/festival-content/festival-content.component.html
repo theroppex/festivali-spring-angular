@@ -1,0 +1,53 @@
+<hr />
+
+<div class="row">
+  <div class="col-md-12">
+    <p>
+      {{festival.description}}
+    </p>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-md-12">
+    <h6>Located in: {{festival.place.name}}</h6>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-md-12">
+    <p-gmap [options]="options" [overlays]="overlays" [style]="{'width':'100%','height':'320px'}" ></p-gmap>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-md-12">
+    <h5>Movies</h5>
+  </div>
+</div>
+
+<div class="row" *ngFor="let movie of movies">
+  <div class="col-md-12">
+    <a href="movie/{{movie.id}}"><h5>{{movie.title}}</h5></a>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-md-12">
+    <h5>Projections</h5>
+  </div>
+</div>
+
+<div class="row" *ngFor="let p of festival.projections">
+  <div class="col-md-12">
+    <h6>{{p.movie.title}} at {{p.location.name}} on {{p.date}} : {{p.hour}}:00</h6>
+  </div>
+</div>

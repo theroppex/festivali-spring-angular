@@ -1,4 +1,5 @@
 import { Place } from "./place";
+import { Projection } from "./projection";
 
 export class Festival {
     id : number;
@@ -8,4 +9,5 @@ export class Festival {
     place : Place;
     startDate : Date;
     endDate : Date;
+    projections : Projection[];
 }

@@ -16,6 +16,7 @@ import { ConfirmDialogModule } from 'primeng/primeng';
 import { ConfirmationService } from 'primeng/primeng';
 import { MenuModule } from 'primeng/primeng';
 import { DialogModule } from 'primeng/primeng';
+import { GMapModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -51,6 +52,8 @@ import { CreateProjectionPageComponent } from './components/create-projection-pa
 import { ProjectionFormComponent } from './components/projection-form/projection-form.component';
 import { MovieService } from './services/movie.service';
 import { ProjectionService } from './services/projection.service';
+import { FestivalPageComponent } from './components/festival-page/festival-page.component';
+import { FestivalContentComponent } from './components/festival-content/festival-content.component';
 
 
 @NgModule({
@@ -75,6 +78,8 @@ import { ProjectionService } from './services/projection.service';
     LocationFormComponent,
     CreateProjectionPageComponent,
     ProjectionFormComponent,
+    FestivalPageComponent,
+    FestivalContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,7 +97,8 @@ import { ProjectionService } from './services/projection.service';
         {path: 'createfestival', component: CreateFestivalPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
         {path: 'createplace', component: CreatePlacePageComponent, canActivate: [AuthGuardService, AdminGuardService]},
         {path: 'createlocation', component: CreateLocationPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
-        {path: 'createprojection/:id', component: CreateProjectionPageComponent, canActivate: [AuthGuardService, AdminGuardService]}
+        {path: 'createprojection/:id', component: CreateProjectionPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
+        {path: 'festival/:id', component: FestivalPageComponent, canActivate: [AuthGuardService]}
       ]
     ),
     AccordionModule,
@@ -104,6 +110,7 @@ import { ProjectionService } from './services/projection.service';
     DropdownModule,
     MenuModule,
     DialogModule,
+    GMapModule,
   ],
   providers: 
   [
