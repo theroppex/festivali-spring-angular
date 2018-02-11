@@ -14,6 +14,7 @@ public class ProjectionsEntity {
     private Date date;
     private int hour;
     private int tickets;
+    private int maxtickets;
     private boolean cancelled;
     private MoviesEntity movie;
     private FestivalsEntity festival;
@@ -48,6 +49,16 @@ public class ProjectionsEntity {
 
     public void setHour(int hour) {
         this.hour = hour;
+    }
+
+    @Basic
+    @Column(name = "maxtickets")
+    public int getMaxtickets() {
+        return maxtickets;
+    }
+
+    public void setMaxtickets(int maxtickets) {
+        this.maxtickets = maxtickets;
     }
 
     @Basic

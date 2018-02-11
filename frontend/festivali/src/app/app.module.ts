@@ -54,6 +54,9 @@ import { MovieService } from './services/movie.service';
 import { ProjectionService } from './services/projection.service';
 import { FestivalPageComponent } from './components/festival-page/festival-page.component';
 import { FestivalContentComponent } from './components/festival-content/festival-content.component';
+import { EditProjectionPageComponent } from './components/edit-projection-page/edit-projection-page.component';
+import { EditProjectionFormComponent } from './components/edit-projection-form/edit-projection-form.component';
+import { HomepageContentComponent } from './components/homepage-content/homepage-content.component';
 
 
 @NgModule({
@@ -80,6 +83,9 @@ import { FestivalContentComponent } from './components/festival-content/festival
     ProjectionFormComponent,
     FestivalPageComponent,
     FestivalContentComponent,
+    EditProjectionPageComponent,
+    EditProjectionFormComponent,
+    HomepageContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,6 +104,7 @@ import { FestivalContentComponent } from './components/festival-content/festival
         {path: 'createplace', component: CreatePlacePageComponent, canActivate: [AuthGuardService, AdminGuardService]},
         {path: 'createlocation', component: CreateLocationPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
         {path: 'createprojection/:id', component: CreateProjectionPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
+        {path: 'editprojection/:id', component: EditProjectionPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
         {path: 'festival/:id', component: FestivalPageComponent, canActivate: [AuthGuardService]}
       ]
     ),

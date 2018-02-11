@@ -48,4 +48,9 @@ public class FestivalsController {
     public Iterable<MoviesEntity> getMoviesByFestival(@PathVariable("id") Integer id) {
         return this.festivalsService.getMoviesByFestival(id);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "valid/")
+    public Iterable<FestivalsEntity> getValidFestivals() {
+        return this.festivalsService.getValidFestivals();
+    }
 }

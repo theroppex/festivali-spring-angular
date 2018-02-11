@@ -86,8 +86,10 @@ export class ProjectionFormComponent implements OnInit {
             this.projection.location != null &&
             this.projection.movie != null &&
             this.projection.tickets != null &&
+            this.projection.maxtickets != null &&
             this.projection.hour >= 11 &&
             this.projection.hour <= 24 &&
+            this.projection.maxtickets > 0 &&
             this.projection.tickets > 0;
   }
 

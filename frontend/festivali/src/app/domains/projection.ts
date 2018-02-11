@@ -10,5 +10,6 @@ export class Projection {
     date : Date;
     hour : number;
     tickets : number;
+    maxtickets : number;
     cancelled : boolean;
 }

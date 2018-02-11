@@ -6,6 +6,9 @@ import io.github.theroppex.festivali.data.repositories.FestivalsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 @Service
 public class FestivalsService {
     private final FestivalsRepository festivalsRepository;
@@ -33,5 +36,10 @@ public class FestivalsService {
 
     public Iterable<MoviesEntity> getMoviesByFestival(Integer id) {
         return this.festivalsRepository.getMoviesByFestival(id);
+    }
+
+    public Iterable<FestivalsEntity> getValidFestivals() {
+        Date date = new Date(Calendar.getInstance().getTime().getTime());
+        return this.festivalsRepository.getValidFestivals(date);
     }
 }

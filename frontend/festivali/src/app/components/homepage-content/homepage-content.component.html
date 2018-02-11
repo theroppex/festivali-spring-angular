@@ -1,0 +1,16 @@
+<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+  <input #fests type="text" pInputText size="45" placeholder="Search festivals">
+</div>
+
+<p-dataTable [value]="festivals" 
+[rows]="5" [paginator]="true" 
+[pageLinks]="3" 
+[rowsPerPageOptions]="[5,10,20]"
+[globalFilter]="fests" #cfests>
+
+  <p-column field="name" header="Name"></p-column>
+
+  <p-column field="description" header="Description"></p-column>
+
+</p-dataTable>
