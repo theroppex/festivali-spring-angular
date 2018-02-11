@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     };
 
     private static final String[] GET_PATHS = {
-            "/festivals/"
+            "/festivals/**"
     };
 
     @Autowired
