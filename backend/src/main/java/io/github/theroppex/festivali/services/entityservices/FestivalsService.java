@@ -42,4 +42,9 @@ public class FestivalsService {
         Date date = new Date(Calendar.getInstance().getTime().getTime());
         return this.festivalsRepository.getValidFestivals(date);
     }
+
+    public Iterable<FestivalsEntity> getValidFestivalsByMovie(String title) {
+        Date date = new Date(Calendar.getInstance().getTime().getTime());
+        return this.festivalsRepository.getValidFestivalsByMovie(date, title);
+    }
 }

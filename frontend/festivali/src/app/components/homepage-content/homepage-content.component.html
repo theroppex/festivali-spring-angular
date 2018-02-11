@@ -1,3 +1,16 @@
+<hr />
+<div *ngIf="!loggedIn">
+  <h6>Filter by dates:</h6>
+  <p-calendar [(ngModel)]="rangeDates" selectionMode="range" readonlyInput="true" (onClose)="filterByDates()"></p-calendar>
+</div>
+<div *ngIf="loggedIn">
+  <h6>Filter by dates and movies:</h6>
+  <input type="text" placeholder="Movie title" [(ngModel)]="title" (keyup)="filterByDatesAndMovies()"> date:
+  <p-calendar [(ngModel)]="rangeDates" selectionMode="range" readonlyInput="true" (onClose)="filterByDatesAndMovies()"></p-calendar>
+</div>
+<hr />
+
+
 <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
   <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
   <input #fests type="text" pInputText size="45" placeholder="Search festivals">
@@ -11,6 +24,42 @@
 
   <p-column field="name" header="Name"></p-column>
 
-  <p-column field="description" header="Description"></p-column>
+  <p-column header="Description">
+    <ng-template let-fest="rowData" pTemplate="body">
+        {{fest.description.substr(0, 35)}}...
+    </ng-template>
+  </p-column>
+
+  <p-column header="Place">
+    <ng-template let-fest="rowData" pTemplate="body">
+      <div class="text-center">
+        {{fest.place.name}}
+      </div>
+    </ng-template>
+  </p-column>
+
+  <p-column header="Starts">
+    <ng-template let-fest="rowData" pTemplate="body">
+      <div class="text-center">
+        {{fest.startDate}}
+      </div>
+    </ng-template>
+  </p-column>
+
+  <p-column header="Ends">
+    <ng-template let-fest="rowData" pTemplate="body">
+      <div class="text-center">
+        {{fest.endDate}}
+      </div>
+    </ng-template>
+  </p-column>
+
+  <p-column header="View" *ngIf="loggedIn">
+    <ng-template let-fest="rowData" pTemplate="body">
+      <div class="text-center">
+        <a routerLink="/festival/{{fest.id}}"><button class="btn btn-sm btn-primary">View</button></a>
+      </div>
+    </ng-template>
+  </p-column>
 
 </p-dataTable>

@@ -17,4 +17,7 @@ public interface FestivalsRepository extends CrudRepository<FestivalsEntity, Int
 
     @Query("select f from FestivalsEntity f where f.visible = true and f.endDate >= :date")
     public Iterable<FestivalsEntity> getValidFestivals(@Param("date")Date date);
+
+    @Query("select f.festival from ProjectionsEntity f where f.festival.endDate >= :date and f.festival.visible = true and f.movie.title like :title")
+    public Iterable<FestivalsEntity> getValidFestivalsByMovie(@Param("date")Date date, @Param("title") String title);
 }
