@@ -15,6 +15,7 @@ public class ProjectionsEntity {
     private int hour;
     private int tickets;
     private int maxtickets;
+    private int price;
     private boolean cancelled;
     private MoviesEntity movie;
     private FestivalsEntity festival;
@@ -72,6 +73,16 @@ public class ProjectionsEntity {
     }
 
     @Basic
+    @Column(name = "price")
+    public int getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    @Basic
     @Column(name = "cancelled")
     public boolean getCancelled() {
         return cancelled;
@@ -80,6 +91,7 @@ public class ProjectionsEntity {
     public void setCancelled(boolean cancelled) {
         this.cancelled = cancelled;
     }
+
 
     @Override
     public boolean equals(Object o) {

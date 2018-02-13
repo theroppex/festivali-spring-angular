@@ -63,18 +63,27 @@ export class HomepageContentComponent implements OnInit {
       }
     }
     else {
-      if(this.rangeDates[0] != null && this.rangeDates[1] != null) {
+      if(this.rangeDates != null) {
+        if(this.rangeDates[0] != null && this.rangeDates[1] != null) {
+          this.festivalService.getValidFestivalsByMovie(this.title).subscribe(
+            res => {
+              let newFestivals : Festival[] = [];
+              for(let f of <Festival[]> res.json()) {
+                if(new Date(f.startDate) <= this.rangeDates[1] && new Date(f.endDate) >= this.rangeDates[0]) {
+                  newFestivals.push(f);
+                }
+              }
+              this.festivals = newFestivals;
+            }
+          );
+        }
+      }
+      else {
         this.festivalService.getValidFestivalsByMovie(this.title).subscribe(
           res => {
-            let newFestivals : Festival[] = [];
-            for(let f of <Festival[]> res.json()) {
-              if(new Date(f.startDate) <= this.rangeDates[1] && new Date(f.endDate) >= this.rangeDates[0]) {
-                newFestivals.push(f);
-              }
-            }
-            this.festivals = newFestivals;
+            this.festivals = <Festival[]> res.json();
           }
-        );
+        )
       }
     }
   }

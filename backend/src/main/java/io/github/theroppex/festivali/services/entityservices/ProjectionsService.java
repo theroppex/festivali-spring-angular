@@ -6,6 +6,9 @@ import io.github.theroppex.festivali.data.repositories.ProjectionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 @Service
 public class ProjectionsService {
     private final ProjectionsRepository projectionsRepository;
@@ -27,5 +30,10 @@ public class ProjectionsService {
         FestivalsEntity festival = this.projectionsRepository.getFestivalByProjectionId(projection.getId());
         projection.setFestival(festival);
         return this.projectionsRepository.save(projection);
+    }
+
+    public Iterable<ProjectionsEntity> getProjectionsByMovie(String title) {
+        Date date = new Date(Calendar.getInstance().getTime().getTime());
+        return this.projectionsRepository.getProjectionsByMovie(date, title);
     }
 }

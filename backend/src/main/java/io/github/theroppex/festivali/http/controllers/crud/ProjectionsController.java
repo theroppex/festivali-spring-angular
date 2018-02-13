@@ -20,6 +20,11 @@ public class ProjectionsController {
         return this.projectionsService.getProjection(id);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "movie/")
+    public Iterable<ProjectionsEntity> getProjectionsByMovie(@RequestParam("title") String title) {
+        return this.projectionsService.getProjectionsByMovie(title);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ProjectionsEntity createProjection(@RequestBody ProjectionsEntity projection) {
         return this.projectionsService.createOrUpdate(projection);

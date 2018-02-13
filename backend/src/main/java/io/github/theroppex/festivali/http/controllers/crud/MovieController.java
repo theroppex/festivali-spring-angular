@@ -3,10 +3,7 @@ package io.github.theroppex.festivali.http.controllers.crud;
 import io.github.theroppex.festivali.data.entities.MoviesEntity;
 import io.github.theroppex.festivali.services.entityservices.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/movies/")
@@ -22,6 +19,11 @@ public class MovieController {
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<MoviesEntity> getMovies() {
         return this.movieService.getMovies();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "{id}")
+    public MoviesEntity getMovie(@PathVariable("id") Integer id) {
+        return this.movieService.getMovie(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)

@@ -20,4 +20,9 @@ export class ProjectionService {
   public updateProjection(projection : Projection) {
     return this.http.patch("http://localhost:8080/api/projections/", projection, {headers : this.loginService.generateAuthHeader()});
   }
+
+  public getProjectionsByMovie(title : string) {
+    let params = {title : title};
+    return this.http.get("http://localhost:8080/api/projections/movie/", {headers : this.loginService.generateAuthHeader(), params : params});
+  }
 }

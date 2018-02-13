@@ -1,0 +1,143 @@
+<div class="row">
+  <div class="col-md-12">
+    {{omdbMovie.Plot}}
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-md-4">
+    <img class="img-fluid" src="{{omdbMovie.Poster}}" alt="Poster">
+  </div>
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col-md-12">
+        <b>Director</b>: {{omdbMovie.Director}}
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-12">
+        <b>Stars</b>: {{omdbMovie.Actors}}
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-12">
+        <b>Genre</b>: {{omdbMovie.Genre }} <b>Runtime</b>: {{omdbMovie.Runtime }} <b>Year</b>: {{omdbMovie.Year}}
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-12">
+        <b>Country</b>: {{omdbMovie.Country}}
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-12">
+        <b>Ratings</b>: Imdb - {{omdbMovie.imdbRating }} Meta - {{omdbMovie.Metascore}}/100 <b> More</b>: 
+        <a href="{{omdbMovie.Website}}">Web</a> <a href="http://www.imdb.com/title/{{omdbMovie.imdbID}}">IMDB</a>
+        <hr>
+        <b>User ratings:</b>
+        <span *ngIf="movie.count == 0">n/a</span>
+        <span *ngIf="movie.count != 0">{{movie.rating / movie.count}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <h5>Screens at:</h5>
+    <hr>
+    <p-dataTable [value]="festivals" 
+        [rows]="5" [paginator]="true" 
+        [pageLinks]="3" 
+        [rowsPerPageOptions]="[5,10,20]"
+        [globalFilter]="fests" #cfests>
+
+    <p-column field="name" header="Name"></p-column>
+
+      <p-column header="Description">
+        <ng-template let-fest="rowData" pTemplate="body">
+            {{fest.description.substr(0, 35)}}...
+        </ng-template>
+      </p-column>
+
+      <p-column header="Place">
+        <ng-template let-fest="rowData" pTemplate="body">
+          <div class="text-center">
+            {{fest.place.name}}
+          </div>
+        </ng-template>
+      </p-column>
+
+      <p-column header="Starts">
+        <ng-template let-fest="rowData" pTemplate="body">
+          <div class="text-center">
+            {{fest.startDate}}
+          </div>
+        </ng-template>
+      </p-column>
+
+      <p-column header="Ends">
+        <ng-template let-fest="rowData" pTemplate="body">
+          <div class="text-center">
+            {{fest.endDate}}
+          </div>
+        </ng-template>
+      </p-column>
+
+    </p-dataTable>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-12">
+    <button type="button" class="btn btn-primary btn-lg btn-block" (click)="showReservation()" [disabled]="showDialog">Make a reservation</button>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-12">
+    <h5>Rate:</h5>
+    <p-rating [(ngModel)]="rating" [cancel]="false" [disabled]="!canRate" [stars]="10" (onRate)="rate()"></p-rating>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-12">
+    <h5>Comment:</h5>
+    <textarea class="form-control" rows="5" id="comment"></textarea>
+    <button type="button" class="btn btn-primary btn-lg btn-block" style="margin-top:10px;">Submit</button>
+  </div>
+</div>
+
+
+<p-dialog [(visible)]="showDialog" [width]="400">
+    <p-header>
+        Make a reservation
+    </p-header>
+  
+    <label>Projection</label> <br />
+    <p-dropdown [options]="projections" placeholder="Select a projection"></p-dropdown>
+    <br />
+    <label >Number of tickets</label> <br />
+    <input type="number" placeholder="Tickets">
+    <p-footer>
+      <button type="button" 
+      class="btn btn-danger btn-sm pull-right" 
+      (click)="confirmReservation()" 
+      [disabled]="!validReservation()" style="margin-bottom:15px">
+          Submit    
+      </button>
+    </p-footer>
+  </p-dialog>

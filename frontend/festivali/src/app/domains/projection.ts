@@ -11,5 +11,6 @@ export class Projection {
     hour : number;
     tickets : number;
     maxtickets : number;
+    price : number;
     cancelled : boolean;
 }

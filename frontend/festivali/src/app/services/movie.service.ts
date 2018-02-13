@@ -12,6 +12,10 @@ export class MovieService {
     return this.http.get("http://localhost:8080/api/movies/", {headers : this.loginService.generateAuthHeader()});
   }
 
+  public getMovie(id : number) {
+    return this.http.get("http://localhost:8080/api/movies/" + id, {headers : this.loginService.generateAuthHeader()});
+  }
+
   public createMovie(movie : Movie) {
     return this.http.post("http://localhost:8080/api/movies/", movie, {headers : this.loginService.generateAuthHeader()});
   }

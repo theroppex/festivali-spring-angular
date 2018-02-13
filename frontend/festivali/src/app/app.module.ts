@@ -17,6 +17,7 @@ import { ConfirmationService } from 'primeng/primeng';
 import { MenuModule } from 'primeng/primeng';
 import { DialogModule } from 'primeng/primeng';
 import { GMapModule } from 'primeng/primeng';
+import { RatingModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -57,6 +58,9 @@ import { FestivalContentComponent } from './components/festival-content/festival
 import { EditProjectionPageComponent } from './components/edit-projection-page/edit-projection-page.component';
 import { EditProjectionFormComponent } from './components/edit-projection-form/edit-projection-form.component';
 import { HomepageContentComponent } from './components/homepage-content/homepage-content.component';
+import { MoviePageComponent } from './components/movie-page/movie-page.component';
+import { MovieContentComponent } from './components/movie-content/movie-content.component';
+import { OmdbMovieService } from './services/omdb-movie.service';
 
 
 @NgModule({
@@ -86,6 +90,8 @@ import { HomepageContentComponent } from './components/homepage-content/homepage
     EditProjectionPageComponent,
     EditProjectionFormComponent,
     HomepageContentComponent,
+    MoviePageComponent,
+    MovieContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,7 +111,8 @@ import { HomepageContentComponent } from './components/homepage-content/homepage
         {path: 'createlocation', component: CreateLocationPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
         {path: 'createprojection/:id', component: CreateProjectionPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
         {path: 'editprojection/:id', component: EditProjectionPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
-        {path: 'festival/:id', component: FestivalPageComponent, canActivate: [AuthGuardService]}
+        {path: 'festival/:id', component: FestivalPageComponent, canActivate: [AuthGuardService]},
+        {path: 'movie/:id', component: MoviePageComponent, canActivate: [AuthGuardService]}
       ]
     ),
     AccordionModule,
@@ -118,6 +125,7 @@ import { HomepageContentComponent } from './components/homepage-content/homepage
     MenuModule,
     DialogModule,
     GMapModule,
+    RatingModule
   ],
   providers: 
   [
@@ -133,7 +141,8 @@ import { HomepageContentComponent } from './components/homepage-content/homepage
     PlaceService,
     LocationService,
     MovieService,
-    ProjectionService
+    ProjectionService,
+    OmdbMovieService
   ],
   bootstrap: [AppComponent]
 })

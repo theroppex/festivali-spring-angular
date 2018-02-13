@@ -21,4 +21,8 @@ public class MovieService {
     public MoviesEntity createOrUpdate(MoviesEntity movie) {
         return this.movieRepository.save(movie);
     }
+
+    public MoviesEntity getMovie(Integer id) {
+        return this.movieRepository.findOne(id);
+    }
 }
