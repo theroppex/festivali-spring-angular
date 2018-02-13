@@ -1,5 +1,6 @@
 package io.github.theroppex.festivali.http.controllers.crud;
 
+import io.github.theroppex.festivali.data.entities.CommentsEntity;
 import io.github.theroppex.festivali.data.entities.MoviesEntity;
 import io.github.theroppex.festivali.services.entityservices.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,10 @@ public class MovieController {
     @RequestMapping(method = RequestMethod.POST)
     public MoviesEntity createMovie(@RequestBody MoviesEntity movie) {
         return this.movieService.createOrUpdate(movie);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "comments/{id}")
+    public Iterable<CommentsEntity> getComments(@PathVariable("id") Integer id) {
+        return this.movieService.getComments(id);
     }
 }

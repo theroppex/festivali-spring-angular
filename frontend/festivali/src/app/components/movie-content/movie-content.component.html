@@ -116,8 +116,27 @@
 <div class="row">
   <div class="col-md-12">
     <h5>Comment:</h5>
-    <textarea class="form-control" rows="5" id="comment"></textarea>
-    <button type="button" class="btn btn-primary btn-lg btn-block" style="margin-top:10px;">Submit</button>
+    <textarea class="form-control" rows="5" id="comment" [(ngModel)]="comment.post"></textarea>
+    <button type="button" class="btn btn-primary btn-lg btn-block" style="margin-top:10px;"
+    [disabled]="!validComment()"
+    (click)="submitComment()">Submit</button>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-12">
+    <h5>Comments:</h5>
+  </div>
+</div>
+
+<div class="row" *ngFor="let comment of comments" style="padding:5px">
+  <div class="col-md-12" style="background:ghostwhite;">
+    <h6>{{comment.user.username}}</h6>
+    <p>
+      {{comment.post}}
+    </p>
   </div>
 </div>
 

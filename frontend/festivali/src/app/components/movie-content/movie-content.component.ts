@@ -5,6 +5,8 @@ import { FestivalService } from '../../services/festival.service';
 import { SelectItem } from 'primeng/primeng';
 import { ProjectionService } from '../../services/projection.service';
 import { Projection } from '../../domains/projection';
+import { Comment } from '../../domains/comment';
+import { MovieService } from '../../services/movie.service';
 
 @Component({
   selector: 'app-movie-content',
@@ -25,7 +27,13 @@ export class MovieContentComponent implements OnInit {
 
   private projections : SelectItem[];
 
-  constructor(private festivalService : FestivalService, private projectionService : ProjectionService) { }
+  private comments : Comment[];
+
+  private comment : Comment = new Comment();
+
+  constructor(private festivalService : FestivalService, 
+              private projectionService : ProjectionService,
+              private movieService : MovieService) { }
 
   ngOnInit() {
     console.log(this.omdbMovie);
@@ -47,6 +55,12 @@ export class MovieContentComponent implements OnInit {
         this.projections = sItems;
       }
     );
+
+    this.movieService.getComments(this.movie.id).subscribe(
+      res => {
+        this.comments = <Comment[]> res.json();
+      }
+    );
   }
 
   rate() {
@@ -63,5 +77,21 @@ export class MovieContentComponent implements OnInit {
 
   showReservation() {
     this.showDialog = true;
+  }
+
+  validComment() {
+    return this.comment.post != null &&
+            this.comment.post.length > 0 &&
+            this.comment.post.length <= 512;
+  }
+
+  submitComment() {
+    this.comment.movie = this.movie;
+    this.movieService.createComment(this.comment).subscribe(
+      res => {
+        this.comments.push(<Comment> res.json());
+        this.comment = new Comment();
+      }
+    );
   }
 }

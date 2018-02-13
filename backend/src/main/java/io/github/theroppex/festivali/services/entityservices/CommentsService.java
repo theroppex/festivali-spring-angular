@@ -1,8 +1,10 @@
 package io.github.theroppex.festivali.services.entityservices;
 
 import io.github.theroppex.festivali.data.entities.CommentsEntity;
+import io.github.theroppex.festivali.data.entities.UsersEntity;
 import io.github.theroppex.festivali.data.repositories.CommentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,6 +17,8 @@ public class CommentsService {
     }
 
     public CommentsEntity createOrUpdate(CommentsEntity comment) {
+        UsersEntity user = (UsersEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        comment.setUser(user);
         return this.commentsRepository.save(comment);
     }
 
