@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ReservationsService {
+    private static final Integer MAX_NUMBER_OF_CANCELLED_RESERVATIONS = 3;
+
     private final ReservationsRepository reservationsRepository;
 
     @Autowired
@@ -18,6 +20,13 @@ public class ReservationsService {
 
     public ReservationsEntity createOrUpdate(ReservationsEntity reservation) {
         UsersEntity user = (UsersEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if(this.reservationsRepository.getNumberOfCancelledReservations(user.getUserId()) > MAX_NUMBER_OF_CANCELLED_RESERVATIONS)
+            return null;
+
+        if(this.reservationsRepository.isReserved(user.getUserId(), reservation.getProjection().getId()))
+            return null;
+
         reservation.setUser(user);
         return this.reservationsRepository.save(reservation);
     }

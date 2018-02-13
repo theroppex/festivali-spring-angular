@@ -147,10 +147,10 @@
     </p-header>
   
     <label>Projection</label> <br />
-    <p-dropdown [options]="projections" placeholder="Select a projection"></p-dropdown>
+    <p-dropdown [options]="projections" [(ngModel)]="reservation.projection" placeholder="Select a projection"></p-dropdown>
     <br />
     <label >Number of tickets</label> <br />
-    <input type="number" placeholder="Tickets">
+    <input type="number" [(ngModel)]="reservation.tickets" [disabled]="reservation.projection == null" placeholder="Tickets">
     <p-footer>
       <button type="button" 
       class="btn btn-danger btn-sm pull-right" 

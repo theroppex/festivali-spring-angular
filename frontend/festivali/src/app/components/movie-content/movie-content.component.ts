@@ -7,6 +7,7 @@ import { ProjectionService } from '../../services/projection.service';
 import { Projection } from '../../domains/projection';
 import { Comment } from '../../domains/comment';
 import { MovieService } from '../../services/movie.service';
+import { Reservation } from '../../domains/reservation';
 
 @Component({
   selector: 'app-movie-content',
@@ -30,6 +31,8 @@ export class MovieContentComponent implements OnInit {
   private comments : Comment[];
 
   private comment : Comment = new Comment();
+
+  private reservation : Reservation = new Reservation();
 
   constructor(private festivalService : FestivalService, 
               private projectionService : ProjectionService,
@@ -68,11 +71,20 @@ export class MovieContentComponent implements OnInit {
   }
 
   confirmReservation() {
-
+    this.reservation.date = new Date();
+    this.movieService.makeReservation(this.reservation).subscribe(
+      res => {
+        this.showDialog = false;
+        this.reservation = new Reservation();
+      }
+    );
   }
 
   validReservation() : boolean {
-    return false;
+    return this.reservation.projection != null &&
+            this.reservation.tickets != null &&
+            this.reservation.tickets > 0 &&
+            this.reservation.tickets <= this.reservation.projection.maxtickets;
   }
 
   showReservation() {

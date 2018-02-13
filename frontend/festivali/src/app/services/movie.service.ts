@@ -3,6 +3,7 @@ import { Http } from '@angular/http/';
 import { LoginService } from './login.service';
 import { Movie } from '../domains/movie';
 import { Comment } from '../domains/comment';
+import { Reservation } from '../domains/reservation';
 
 @Injectable()
 export class MovieService {
@@ -27,5 +28,9 @@ export class MovieService {
 
   public createComment(comment : Comment) {
     return this.http.post("http://localhost:8080/api/comments/", comment, {headers : this.loginService.generateAuthHeader()});
+  }
+
+  makeReservation(reservation : Reservation) {
+    return this.http.post("http://localhost:8080/api/reservations/", reservation, {headers : this.loginService.generateAuthHeader()});
   }
 }

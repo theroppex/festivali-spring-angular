@@ -1,16 +1,19 @@
 package io.github.theroppex.festivali.data.entities;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "reservations", schema = "pia", catalog = "")
+@Table(name = "reservations", schema = "pia")
 public class ReservationsEntity {
     private int id;
     private boolean cancelled;
     private boolean fulfilled;
     private UsersEntity user;
     private ProjectionsEntity projection;
+    private Date date;
+    private int tickets;
 
     @Id
     @Column(name = "id")
@@ -41,6 +44,26 @@ public class ReservationsEntity {
 
     public void setFulfilled(boolean fulfilled) {
         this.fulfilled = fulfilled;
+    }
+
+    @Basic
+    @Column(name = "date")
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    @Basic
+    @Column(name = "tickets")
+    public int getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(int tickets) {
+        this.tickets = tickets;
     }
 
     @Override
