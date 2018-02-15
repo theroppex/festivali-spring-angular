@@ -7,9 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 @Service
 public class ReservationsService {
     private static final Integer MAX_NUMBER_OF_CANCELLED_RESERVATIONS = 3;
+    private static final int CODE_LEN = 10;
+    private static final String SEED = "QWERTYUIOPASDFGHJKLZXCVBNM";
+    private static final Random rand = new Random();
 
     private final ReservationsRepository reservationsRepository;
 
@@ -27,6 +32,7 @@ public class ReservationsService {
         if(this.reservationsRepository.isReserved(user.getUserId(), reservation.getProjection().getId()))
             return null;
 
+        reservation.setCode(getCode());
         reservation.setUser(user);
         return this.reservationsRepository.save(reservation);
     }
@@ -44,5 +50,17 @@ public class ReservationsService {
         ReservationsEntity reservation = this.reservationsRepository.findOne(id);
         reservation.setFulfilled(true);
         return this.reservationsRepository.save(reservation);
+    }
+
+    private static int getRand() {
+        return rand.nextInt((SEED.length()) + 1);
+    }
+
+    private static String getCode() {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < CODE_LEN; i++) {
+            sb.append(SEED.charAt(getRand()));
+        }
+        return sb.toString();
     }
 }

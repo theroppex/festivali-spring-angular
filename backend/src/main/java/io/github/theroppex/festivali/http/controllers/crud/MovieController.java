@@ -36,4 +36,9 @@ public class MovieController {
     public Iterable<CommentsEntity> getComments(@PathVariable("id") Integer id) {
         return this.movieService.getComments(id);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "cancomment/{id}")
+    public Boolean canComment(@PathVariable("id") Integer movie) {
+        return this.movieService.canComment(movie);
+    }
 }

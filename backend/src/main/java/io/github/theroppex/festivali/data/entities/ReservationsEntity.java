@@ -14,6 +14,7 @@ public class ReservationsEntity {
     private ProjectionsEntity projection;
     private Date date;
     private int tickets;
+    private String code;
 
     @Id
     @Column(name = "id")
@@ -64,6 +65,16 @@ public class ReservationsEntity {
 
     public void setTickets(int tickets) {
         this.tickets = tickets;
+    }
+
+    @Basic
+    @Column(name = "code")
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override

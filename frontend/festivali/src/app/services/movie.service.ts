@@ -33,4 +33,8 @@ export class MovieService {
   makeReservation(reservation : Reservation) {
     return this.http.post("http://localhost:8080/api/reservations/", reservation, {headers : this.loginService.generateAuthHeader()});
   }
+
+  public canComment(id : number) {
+    return this.http.get("http://localhost:8080/api/movies/cancomment/" + id, {headers : this.loginService.generateAuthHeader()});
+  }
 }

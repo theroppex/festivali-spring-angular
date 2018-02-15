@@ -20,7 +20,8 @@ export class MovieContentComponent implements OnInit {
   @Input() omdbMovie : any;
 
   private rating : number;
-  private canRate : boolean = true;
+  private canRate : boolean = false;
+  private canComment : boolean = false;
 
   private showDialog : boolean = false;
 
@@ -64,6 +65,13 @@ export class MovieContentComponent implements OnInit {
         this.comments = <Comment[]> res.json();
       }
     );
+
+    this.movieService.canComment(this.movie.id).subscribe(
+      res => {
+        this.canComment = <boolean> res.json();
+        this.canRate = this.canComment;
+      }
+    );
   }
 
   rate() {
@@ -94,7 +102,8 @@ export class MovieContentComponent implements OnInit {
   validComment() {
     return this.comment.post != null &&
             this.comment.post.length > 0 &&
-            this.comment.post.length <= 512;
+            this.comment.post.length <= 512 &&
+            this.canComment;
   }
 
   submitComment() {

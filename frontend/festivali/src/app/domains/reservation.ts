@@ -7,6 +7,7 @@ export class Reservation {
     fulfilled : boolean;
     date : Date;
     tickets : number;
+    code : string;
     user : User;
     projection : Projection;
 }
