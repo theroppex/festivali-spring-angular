@@ -22,6 +22,10 @@ export class MovieService {
     return this.http.post("http://localhost:8080/api/movies/", movie, {headers : this.loginService.generateAuthHeader()});
   }
 
+  public updateMovie(movie : Movie) {
+    return this.http.patch("http://localhost:8080/api/movies/", movie, {headers : this.loginService.generateAuthHeader()});
+  }
+
   public getComments(id : number) {
     return this.http.get("http://localhost:8080/api/movies/comments/" + id, {headers : this.loginService.generateAuthHeader()});
   }

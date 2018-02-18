@@ -42,7 +42,7 @@
         <hr>
         <b>User ratings:</b>
         <span *ngIf="movie.count == 0">n/a</span>
-        <span *ngIf="movie.count != 0">{{movie.rating / movie.count}}</span>
+        <span *ngIf="movie.count != 0">{{(movie.rating / movie.count).toFixed(2)}}</span>
       </div>
     </div>
   </div>

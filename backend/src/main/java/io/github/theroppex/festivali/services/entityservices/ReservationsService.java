@@ -53,7 +53,7 @@ public class ReservationsService {
     }
 
     private static int getRand() {
-        return rand.nextInt((SEED.length()) + 1);
+        return rand.nextInt(SEED.length());
     }
 
     private static String getCode() {

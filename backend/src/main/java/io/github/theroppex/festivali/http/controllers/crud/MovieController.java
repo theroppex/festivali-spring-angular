@@ -41,4 +41,9 @@ public class MovieController {
     public Boolean canComment(@PathVariable("id") Integer movie) {
         return this.movieService.canComment(movie);
     }
+
+    @RequestMapping(method = RequestMethod.PATCH)
+    public MoviesEntity updateMovie(@RequestBody MoviesEntity movie) {
+        return this.movieService.createOrUpdate(movie);
+    }
 }

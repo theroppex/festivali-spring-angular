@@ -76,6 +76,9 @@ export class MovieContentComponent implements OnInit {
 
   rate() {
     this.canRate = false;
+    this.movie.rating += this.rating;
+    this.movie.count += 1;
+    this.movieService.updateMovie(this.movie).subscribe();
   }
 
   confirmReservation() {
