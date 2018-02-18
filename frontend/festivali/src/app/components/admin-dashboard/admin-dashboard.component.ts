@@ -9,6 +9,8 @@ import { Place } from '../../domains/place';
 import { PlaceService } from '../../services/place.service';
 import { Location } from '../../domains/location';
 import { LocationService } from '../../services/location.service';
+import { Projection } from '../../domains/projection';
+import { ProjectionService } from '../../services/projection.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -22,12 +24,14 @@ export class AdminDashboardComponent implements OnInit {
   private festivals : Festival[];
   private places : Place[];
   private locations : Location[];
+  private projections : Projection[];
 
   constructor(private usersSrvice : UserService, 
               private loginService : LoginService,
               private festivalService : FestivalService,
               private placesService : PlaceService,
-              private locationService : LocationService) { }
+              private locationService : LocationService,
+              private projectionService : ProjectionService) { }
 
   ngOnInit() {
     this.usersSrvice.getActiveUsers().subscribe(
@@ -61,6 +65,12 @@ export class AdminDashboardComponent implements OnInit {
     this.locationService.getLocations().subscribe(
       res => {
         this.locations = <Location[]> res.json();
+      }
+    )
+
+    this.projectionService.getActiveProjections().subscribe(
+      res => {
+        this.projections = <Projection[]> res.json();
       }
     )
   }
@@ -154,5 +164,10 @@ export class AdminDashboardComponent implements OnInit {
         this.locations = [ ...this.locations.slice(0, index), ...this.locations.slice(index + 1, this.locations.length ) ];
       }
     );
+  }
+
+  cancelProjection(projection : Projection) {
+    projection.cancelled = true;
+    this.projectionService.cancelProjection(projection).subscribe();
   }
 }

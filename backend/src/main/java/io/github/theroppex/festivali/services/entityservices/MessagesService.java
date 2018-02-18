@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class MessagesService {
@@ -28,6 +29,19 @@ public class MessagesService {
 
         dest.addMessage(msg);
         this.usersRepository.save(dest);
+    }
+
+    public void unicast(UsersEntity user, String message) {
+        MessagesEntity msg = new MessagesEntity();
+        msg.setSeen(false);
+        msg.setText(message);
+        user.addMessage(msg);
+        this.usersRepository.save(user);
+    }
+
+    public void broadcast(List<UsersEntity> users, String message) {
+        for(UsersEntity user : users)
+            this.unicast(user, message);
     }
 
     public void markAsRead(Integer msgId) {

@@ -17,6 +17,10 @@ export class ProjectionService {
     return this.http.post("http://localhost:8080/api/projections/", projection, {headers : this.loginService.generateAuthHeader()});
   }
 
+  public cancelProjection(projection : Projection) {
+    return this.http.post("http://localhost:8080/api/projections/cancel/", projection, {headers : this.loginService.generateAuthHeader()});
+  }
+
   public updateProjection(projection : Projection) {
     return this.http.patch("http://localhost:8080/api/projections/", projection, {headers : this.loginService.generateAuthHeader()});
   }
@@ -24,5 +28,9 @@ export class ProjectionService {
   public getProjectionsByMovie(title : string) {
     let params = {title : title};
     return this.http.get("http://localhost:8080/api/projections/movie/", {headers : this.loginService.generateAuthHeader(), params : params});
+  }
+
+  public getActiveProjections() {
+    return this.http.get("http://localhost:8080/api/projections/active/", {headers : this.loginService.generateAuthHeader()});
   }
 }

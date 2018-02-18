@@ -34,4 +34,14 @@ public class ProjectionsController {
     public ProjectionsEntity updateProjection(@RequestBody ProjectionsEntity projection) {
         return this.projectionsService.update(projection);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "active/")
+    public Iterable<ProjectionsEntity> getActiveProjections() {
+        return this.projectionsService.getActiveProjections();
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "cancel/")
+    public void cancelProjection(@RequestBody ProjectionsEntity projection) {
+        this.projectionsService.cancelProjection(projection);
+    }
 }

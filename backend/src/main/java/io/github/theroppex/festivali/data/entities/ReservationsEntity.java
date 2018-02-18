@@ -10,6 +10,7 @@ public class ReservationsEntity {
     private int id;
     private boolean cancelled;
     private boolean fulfilled;
+    private boolean stopped;
     private UsersEntity user;
     private ProjectionsEntity projection;
     private Date date;
@@ -45,6 +46,16 @@ public class ReservationsEntity {
 
     public void setFulfilled(boolean fulfilled) {
         this.fulfilled = fulfilled;
+    }
+
+    @Basic
+    @Column(name = "stopped")
+    public boolean getStopped() {
+        return this.stopped;
+    }
+
+    public void setStopped(boolean stopped) {
+        this.stopped = stopped;
     }
 
     @Basic

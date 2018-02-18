@@ -119,6 +119,60 @@
 
     </p-accordionTab>
 
+
+    <p-accordionTab header="Projections">
+
+        <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input #projs type="text" pInputText size="45" placeholder="Search projections">
+        </div>
+
+        <p-dataTable [value]="projections" 
+        [rows]="10" [paginator]="true" 
+        [pageLinks]="3" 
+        [rowsPerPageOptions]="[5,10,20]"
+        [globalFilter]="fests" #cfests>
+
+            <p-column field="id" header="Id"></p-column>
+
+            <p-column header="Movie">
+                <ng-template let-proj="rowData" pTemplate="body">
+                    <div class="text-center">
+                        {{proj.movie.title}}
+                    </div>
+                </ng-template>
+            </p-column>
+
+            <p-column field="date" header="Date"></p-column>
+
+            <p-column header="Hour">
+                <ng-template let-proj="rowData" pTemplate="body">
+                    <div class="text-center">
+                        {{proj.hour + ":00"}}
+                    </div>
+                </ng-template>
+            </p-column>
+
+            <p-column header="Edit Projection">
+                <ng-template let-proj="rowData" pTemplate="body">
+                    <div class="text-center">
+                        <a routerLink="/editprojection/{{proj.id}}"><button class="btn btn-sm btn-primary">Edit</button></a>
+                    </div>
+                </ng-template>
+            </p-column>
+
+            <p-column header="Cancel Projection">
+                <ng-template let-proj="rowData" pTemplate="body">
+                    <div class="text-center">
+                        <button class="btn btn-sm btn-danger" [disabled]="proj.cancelled" (click)="cancelProjection(proj)">Cancel</button>
+                    </div>
+                </ng-template>
+            </p-column>
+
+        </p-dataTable>
+
+    </p-accordionTab>
+
     <p-accordionTab header="Places">
 
         <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
