@@ -61,6 +61,8 @@ import { HomepageContentComponent } from './components/homepage-content/homepage
 import { MoviePageComponent } from './components/movie-page/movie-page.component';
 import { MovieContentComponent } from './components/movie-content/movie-content.component';
 import { OmdbMovieService } from './services/omdb-movie.service';
+import { PasswordPageComponent } from './components/password-page/password-page.component';
+import { PasswordFormComponent } from './components/password-form/password-form.component';
 
 
 @NgModule({
@@ -92,6 +94,8 @@ import { OmdbMovieService } from './services/omdb-movie.service';
     HomepageContentComponent,
     MoviePageComponent,
     MovieContentComponent,
+    PasswordPageComponent,
+    PasswordFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,7 +116,8 @@ import { OmdbMovieService } from './services/omdb-movie.service';
         {path: 'createprojection/:id', component: CreateProjectionPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
         {path: 'editprojection/:id', component: EditProjectionPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
         {path: 'festival/:id', component: FestivalPageComponent, canActivate: [AuthGuardService]},
-        {path: 'movie/:id', component: MoviePageComponent, canActivate: [AuthGuardService]}
+        {path: 'movie/:id', component: MoviePageComponent, canActivate: [AuthGuardService]},
+        {path: 'changepass', component: PasswordPageComponent, canActivate: [AuthGuardService]}
       ]
     ),
     AccordionModule,

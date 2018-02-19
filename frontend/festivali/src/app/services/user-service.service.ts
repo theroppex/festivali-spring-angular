@@ -3,6 +3,7 @@ import { User } from '../domains/user';
 import { Role } from '../domains/role';
 import { LoginService } from './login.service';
 import { Http } from '@angular/http';
+import { PassJson } from '../domains/passJson';
 
 @Injectable()
 export class UserService {
@@ -64,5 +65,10 @@ export class UserService {
   public removeSeller(user : User) {
     let url = "http://localhost:8080/api/users/removeseller/" + user.userId;
     return this.http.patch(url, '', {headers : this.loginService.generateAuthHeader()});
+  }
+
+  public changePassword(pass : PassJson) {
+    let url = "http://localhost:8080/api/users/changepassword/";
+    return this.http.post(url, pass, {headers : this.loginService.generateAuthHeader()});
   }
 }

@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
 
   validatePassword() {
     this.validPassword = this.loginForm
-      .password.match("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}") != null;
+      .password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}/g) != null;
 
     this.validateInput();
   }

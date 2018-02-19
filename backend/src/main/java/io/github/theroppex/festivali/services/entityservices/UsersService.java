@@ -4,8 +4,10 @@ import io.github.theroppex.festivali.data.entities.RolesEntity;
 import io.github.theroppex.festivali.data.entities.UsersEntity;
 import io.github.theroppex.festivali.data.repositories.RolesRepository;
 import io.github.theroppex.festivali.data.repositories.UsersRepository;
+import io.github.theroppex.festivali.http.util.PassChangeJsonWrapper;
 import io.github.theroppex.festivali.security.utility.SecurityUtility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -126,5 +128,13 @@ public class UsersService {
         this.usersRepository.save(user);
     }
 
+    public UsersEntity changePassword(PassChangeJsonWrapper p) {
+        UsersEntity user = (UsersEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(SecurityUtility.getPasswordEncoder().matches(p.getOldPass(), user.getPassword())){
+            user.setPassword(SecurityUtility.getPasswordEncoder().encode(p.getNewPass()));
+            return this.usersRepository.save(user);
+        }
 
+        return null;
+    }
 }

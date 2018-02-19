@@ -1,9 +1,11 @@
 package io.github.theroppex.festivali.http.controllers;
 
 import io.github.theroppex.festivali.data.entities.UsersEntity;
+import io.github.theroppex.festivali.http.util.PassChangeJsonWrapper;
 import io.github.theroppex.festivali.services.entityservices.MessagesService;
 import io.github.theroppex.festivali.services.entityservices.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -91,5 +93,15 @@ public class UsersController {
     public void activateUser(@PathVariable("userId") Integer userId) {
         this.usersService.activateUser(userId);
         this.messagesService.unicast(userId, "Your account has been activated");
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "changepassword/")
+    public ResponseEntity<UsersEntity> changePassword(@RequestBody PassChangeJsonWrapper p) {
+        UsersEntity user = this.usersService.changePassword(p);
+        if(null == user) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(user);
     }
 }

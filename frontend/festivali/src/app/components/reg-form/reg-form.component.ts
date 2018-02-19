@@ -119,7 +119,7 @@ export class RegFormComponent implements OnInit {
   private checkPassword() : ValidatorFn {
     return (control : AbstractControl) => {
       let str : string = control.value as string;
-      if(str.match("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}") == null) {
+      if(str.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}/g) == null) {
         return {invalidPassword : true}
       }
       return null;

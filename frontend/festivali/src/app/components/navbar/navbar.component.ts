@@ -41,4 +41,13 @@ export class NavbarComponent implements OnInit {
       return this.userService.isAdimn(this.user);
     }
   }
+
+  isSeller() : boolean {
+    if(this.user == null) {
+      return false;
+    }
+    else {
+      return this.userService.isSeller(this.user);
+    }
+  }
 }
