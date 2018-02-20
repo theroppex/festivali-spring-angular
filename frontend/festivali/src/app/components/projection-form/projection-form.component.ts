@@ -90,7 +90,9 @@ export class ProjectionFormComponent implements OnInit {
             this.projection.hour >= 11 &&
             this.projection.hour <= 24 &&
             this.projection.maxtickets > 0 &&
-            this.projection.tickets > 0;
+            this.projection.maxtickets <= this.projection.tickets &&
+            this.projection.tickets > 0 &&
+            this.projection.price > 0;
   }
 
   confirm() {

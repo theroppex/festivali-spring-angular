@@ -52,6 +52,10 @@ public class ReservationsService {
         return this.reservationsRepository.save(reservation);
     }
 
+    public Iterable<ReservationsEntity> getReservationsForSeller() {
+        return this.reservationsRepository.getReservationsForSeller();
+    }
+
     private static int getRand() {
         return rand.nextInt(SEED.length());
     }

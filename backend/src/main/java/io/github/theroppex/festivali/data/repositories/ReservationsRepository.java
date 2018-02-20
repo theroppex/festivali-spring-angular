@@ -11,4 +11,7 @@ public interface ReservationsRepository extends CrudRepository<ReservationsEntit
 
     @Query("select case when count(r) > 0 then 'true' else 'false' end from ReservationsEntity r where r.user.userId = :user and r.projection.id = :projection")
     public Boolean isReserved(@Param("user") Integer user, @Param("projection") Integer projection);
+
+    @Query("select r from ReservationsEntity r where r.cancelled = false and r.fulfilled = false and r.projection.date >= current_date")
+    public Iterable<ReservationsEntity> getReservationsForSeller();
 }

@@ -67,7 +67,8 @@ export class FestivalFormComponent implements OnInit {
                 .subscribe(
                   acc => {
                     this.hasFailed = false;
-                    this.router.navigateByUrl("/admin");
+                    let fest = <Festival> acc.json();
+                    this.router.navigateByUrl("/createprojection/" + fest.id);
                   },
                   rej => {
                     this.hasFailed = true;

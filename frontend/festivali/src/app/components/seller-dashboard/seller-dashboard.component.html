@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      <input #ress type="text" pInputText size="45" placeholder="Search projections">
+  </div>
+
+  <p-dataTable [value]="reservations" 
+  [rows]="10" [paginator]="true" 
+  [pageLinks]="3" 
+  [rowsPerPageOptions]="[5,10,20]"
+  [globalFilter]="ress" #cress>
+
+      <p-column field="code" header="Code"></p-column>
+
+      <p-column header="Name">
+          <ng-template let-res="rowData" pTemplate="body">
+              {{res.user.name}}
+          </ng-template>
+      </p-column>
+
+      <p-column header="Name">
+        <ng-template let-res="rowData" pTemplate="body">
+            {{res.user.lastname}}
+        </ng-template>
+      </p-column>
+
+      <p-column header="Sell">
+        <ng-template let-res="rowData" pTemplate="body">
+            <div class="text-center">
+              <button class="btn btn-primary" (click)="sellReservation(res)" [disabled]="showDialog">
+                Sell
+              </button>
+            </div>
+        </ng-template>
+      </p-column>
+
+  </p-dataTable>
+  </div>
+</div>
+
+
+<p-dialog [(visible)]="showDialog">
+  <p-header>
+      Confirm sale
+  </p-header>
+
+  <div *ngIf="showDialog">
+    Price: {{selectedReservation.tickets * selectedReservation.projection.price}}
+  </div>
+
+  <p-footer>
+    <button type="button" 
+    class="btn btn-danger btn-x-sm pull-right" 
+    (click)="confirmSale()" style="margin-bottom:15px">
+        Confirm   
+    </button>
+  </p-footer>
+</p-dialog>

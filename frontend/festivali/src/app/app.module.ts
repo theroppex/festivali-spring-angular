@@ -63,6 +63,10 @@ import { MovieContentComponent } from './components/movie-content/movie-content.
 import { OmdbMovieService } from './services/omdb-movie.service';
 import { PasswordPageComponent } from './components/password-page/password-page.component';
 import { PasswordFormComponent } from './components/password-form/password-form.component';
+import { ReservationService } from './services/reservation.service';
+import { SellerPageComponent } from './components/seller-page/seller-page.component';
+import { SellerDashboardComponent } from './components/seller-dashboard/seller-dashboard.component';
+import { SellerGuardService } from './services/seller-guard.service';
 
 
 @NgModule({
@@ -96,6 +100,8 @@ import { PasswordFormComponent } from './components/password-form/password-form.
     MovieContentComponent,
     PasswordPageComponent,
     PasswordFormComponent,
+    SellerPageComponent,
+    SellerDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,6 +115,7 @@ import { PasswordFormComponent } from './components/password-form/password-form.
         {path: '', component: HomePageComponent},
         {path: 'register', component: RegisterPageComponent, canActivate: [GuestGuardService]},
         {path: 'admin', component: AdminPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
+        {path: 'seller', component: SellerPageComponent, canActivate: [AuthGuardService, SellerGuardService]},
         {path: 'messages', component: MessagesPageComponent, canActivate: [AuthGuardService]},
         {path: 'createfestival', component: CreateFestivalPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
         {path: 'createplace', component: CreatePlacePageComponent, canActivate: [AuthGuardService, AdminGuardService]},
@@ -147,7 +154,9 @@ import { PasswordFormComponent } from './components/password-form/password-form.
     LocationService,
     MovieService,
     ProjectionService,
-    OmdbMovieService
+    OmdbMovieService,
+    ReservationService,
+    SellerGuardService
   ],
   bootstrap: [AppComponent]
 })
