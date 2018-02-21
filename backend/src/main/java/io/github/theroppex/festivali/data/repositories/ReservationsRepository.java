@@ -14,4 +14,7 @@ public interface ReservationsRepository extends CrudRepository<ReservationsEntit
 
     @Query("select r from ReservationsEntity r where r.cancelled = false and r.fulfilled = false and r.projection.date >= current_date")
     public Iterable<ReservationsEntity> getReservationsForSeller();
+
+    @Query("select r from ReservationsEntity r where r.user.userId = :id")
+    public Iterable<ReservationsEntity> getReservationsForUser(@Param("id") Integer id);
 }

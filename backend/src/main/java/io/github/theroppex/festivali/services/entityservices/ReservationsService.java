@@ -56,6 +56,11 @@ public class ReservationsService {
         return this.reservationsRepository.getReservationsForSeller();
     }
 
+    public Iterable<ReservationsEntity> getReservationsForUser() {
+        UsersEntity user = (UsersEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return this.reservationsRepository.getReservationsForUser(user.getUserId());
+    }
+
     private static int getRand() {
         return rand.nextInt(SEED.length());
     }

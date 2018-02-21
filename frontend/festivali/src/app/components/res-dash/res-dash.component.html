@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-12">
+    <p-dataTable [value]="reservations" 
+  [rows]="10" [paginator]="true" 
+  [pageLinks]="3" 
+  [rowsPerPageOptions]="[5,10,20]"
+  [globalFilter]="ress" #cress>
+
+    <p-column header="Code">
+      <ng-template let-res="rowData" pTemplate="body">
+          <span style="color:red" *ngIf="isMarked(res)">{{res.code}}</span>
+          <span *ngIf="!isMarked(res)">{{res.code}}</span>
+      </ng-template>
+    </p-column>
+
+      <p-column header="Movie">
+        <ng-template let-res="rowData" pTemplate="body">
+            {{res.projection.movie.title}}
+        </ng-template>
+      </p-column>
+
+      <p-column header="Date">
+        <ng-template let-res="rowData" pTemplate="body">
+            {{res.projection.date}}
+        </ng-template>
+      </p-column>
+
+      <p-column header="Cancel">
+        <ng-template let-res="rowData" pTemplate="body">
+            <div class="text-center">
+              <button class="btn btn-danger" [disabled]="disabledCancel(res)" (click)="cancel(res)">
+                Cancel
+              </button>
+            </div>
+        </ng-template>
+      </p-column>
+
+  </p-dataTable>
+  </div>
+</div>

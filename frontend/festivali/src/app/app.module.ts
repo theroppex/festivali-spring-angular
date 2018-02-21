@@ -67,6 +67,8 @@ import { ReservationService } from './services/reservation.service';
 import { SellerPageComponent } from './components/seller-page/seller-page.component';
 import { SellerDashboardComponent } from './components/seller-dashboard/seller-dashboard.component';
 import { SellerGuardService } from './services/seller-guard.service';
+import { ResPageComponent } from './components/res-page/res-page.component';
+import { ResDashComponent } from './components/res-dash/res-dash.component';
 
 
 @NgModule({
@@ -102,6 +104,8 @@ import { SellerGuardService } from './services/seller-guard.service';
     PasswordFormComponent,
     SellerPageComponent,
     SellerDashboardComponent,
+    ResPageComponent,
+    ResDashComponent,
   ],
   imports: [
     BrowserModule,
@@ -124,7 +128,8 @@ import { SellerGuardService } from './services/seller-guard.service';
         {path: 'editprojection/:id', component: EditProjectionPageComponent, canActivate: [AuthGuardService, AdminGuardService]},
         {path: 'festival/:id', component: FestivalPageComponent, canActivate: [AuthGuardService]},
         {path: 'movie/:id', component: MoviePageComponent, canActivate: [AuthGuardService]},
-        {path: 'changepass', component: PasswordPageComponent, canActivate: [AuthGuardService]}
+        {path: 'changepass', component: PasswordPageComponent, canActivate: [AuthGuardService]},
+        {path: 'reservations', component: ResPageComponent, canActivate: [AuthGuardService]}
       ]
     ),
     AccordionModule,

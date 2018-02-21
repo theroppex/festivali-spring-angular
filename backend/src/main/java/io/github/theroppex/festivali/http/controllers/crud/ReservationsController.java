@@ -25,8 +25,18 @@ public class ReservationsController {
         this.reservationsService.fulfillReservation(id);
     }
 
+    @RequestMapping(method = RequestMethod.POST, value = "cancel/{id}")
+    public void cancelReservation(@PathVariable("id") Integer id) {
+        this.reservationsService.cancelReservation(id);
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "seller/")
     public Iterable<ReservationsEntity> getReservationsForSeller() {
         return this.reservationsService.getReservationsForSeller();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "user/")
+    public Iterable<ReservationsEntity> getReservationsForUser() {
+        return this.reservationsService.getReservationsForUser();
     }
 }
