@@ -40,26 +40,27 @@ export class ProjectionFormComponent implements OnInit {
         this.festivalService.getFestival(this.id).subscribe(
           res => {
             this.festival = <Festival> res.json();
+
+            this.locationService.getLocationsForPlace(this.festival.place.id).subscribe(
+              res => {
+                let newSelectItems : SelectItem[] = [];
+        
+                let newLocation : Location[] = <Location[]> res.json();
+        
+                for(let p of newLocation) {
+                  newSelectItems.push({label : p.name, value : p});
+                }
+        
+                this.locations = newSelectItems;
+              }
+            );
+
             this.projection.festival = this.festival;
 
             this.minDate = new Date(this.festival.startDate);
             this.maxDate = new Date(this.festival.endDate);
           }
         );
-      }
-    );
-
-    this.locationService.getLocations().subscribe(
-      res => {
-        let newSelectItems : SelectItem[] = [];
-
-        let newLocation : Location[] = <Location[]> res.json();
-
-        for(let p of newLocation) {
-          newSelectItems.push({label : p.name, value : p});
-        }
-
-        this.locations = newSelectItems;
       }
     );
 

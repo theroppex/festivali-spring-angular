@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.Random;
 
 @Service
 public class ReservationsService {
     private static final Integer MAX_NUMBER_OF_CANCELLED_RESERVATIONS = 3;
     private static final int CODE_LEN = 10;
+    private static final long REMOVAL_BORDER = 3600 * 48 * 1000; //2 days ago
     private static final String SEED = "QWERTYUIOPASDFGHJKLZXCVBNM";
     private static final Random rand = new Random();
 
@@ -59,6 +62,15 @@ public class ReservationsService {
     public Iterable<ReservationsEntity> getReservationsForUser() {
         UsersEntity user = (UsersEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return this.reservationsRepository.getReservationsForUser(user.getUserId());
+    }
+
+    public void clearOldReservations(){
+        Date date = new Date(Calendar.getInstance().getTime().getTime() - REMOVAL_BORDER);
+        Iterable<ReservationsEntity> oldReservations = this.reservationsRepository.getOldReservations(date);
+        for(ReservationsEntity r : oldReservations){
+            r.setCancelled(true);
+            this.reservationsRepository.save(r);
+        }
     }
 
     private static int getRand() {

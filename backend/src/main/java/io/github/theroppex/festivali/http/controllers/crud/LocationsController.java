@@ -26,6 +26,11 @@ public class LocationsController {
         return this.locationsService.getLocations();
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "place/{id}")
+    public Iterable<LocationsEntity> getLocationsForPlace(@PathVariable("id") Integer id) {
+        return this.locationsService.getLocationsForPlace(id);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public LocationsEntity createLocation(@RequestBody LocationsEntity location) {
         return this.locationsService.createOrUpdate(location);

@@ -12,6 +12,10 @@ export class LocationService {
     return this.http.get("http://localhost:8080/api/locations/", {headers : this.loginService.generateAuthHeader()});
   }
 
+  public getLocationsForPlace(id : number) {
+    return this.http.get("http://localhost:8080/api/locations/place/" + id, {headers : this.loginService.generateAuthHeader()});
+  }
+
   public createLocation(location : Location) {
     return this.http.post("http://localhost:8080/api/locations/", location, {headers : this.loginService.generateAuthHeader()});
   }

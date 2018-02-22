@@ -29,4 +29,8 @@ public class LocationsService {
     public void delete(Integer location) {
         this.locationsRepository.delete(location);
     }
+
+    public Iterable<LocationsEntity> getLocationsForPlace(Integer id) {
+        return this.locationsRepository.getLocationsForPlace(id);
+    }
 }
